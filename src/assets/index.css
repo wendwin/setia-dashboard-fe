@@ -1,3 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* import Flowbite Vue styles */
+@import "flowbite-vue/index.css";
