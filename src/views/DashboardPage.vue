@@ -12,15 +12,14 @@
                     </div>
                 </div>
 
-                <VerticalTab />
+                <Tab />
             </div>
         </main>
     </div>
 </template>
 
 <script setup>
-import VerticalTab from '../components/Tab.vue'
-
+import Tab from '../components/Tab.vue'
 </script>
 
 <style scoped></style>s
