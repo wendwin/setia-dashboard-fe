@@ -1,7 +1,8 @@
 <template>
     <div>
         <div class="grid gap-6 mb-8 md:grid-cols-2 items-start">
-            <div class="lg:flex items-center justify-evenly p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 md:min-h-[202px]">
+            <div
+                class="lg:flex items-center justify-evenly p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 md:min-h-[202px]">
                 <div class="flex items-center mb-5 lg:mb-0">
                     <div
                         class="p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500">
@@ -63,21 +64,30 @@
             </div>
         </div>
 
-        <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-            Charts
-        </h2>
         <div class="grid gap-6 mb-8 md:grid-cols-2">
             <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-                    Persentase Sentiment
+                <!-- <h4 class="mb-5 text-center text-lg font-semibold text-gray-800 dark:text-gray-300">
+                    Persentase Sentiment Hospitals Type A
+                </h4> -->
+                <h4 class="mb-6 font-semibold text-gray-800 dark:text-gray-300">
+                    Sentiment Distribution for Type A Hospitals
                 </h4>
-                <Chart />
+                <div class="lg:flex justify-evenly">
+                    <div class="mb-10 lg:mb-0">
+                        <h2 class="text-center font-semibold mb-2 text-gray-800 dark:text-gray-300">Sentiment Real</h2>
+                        <ChartSentimentRealTypeA />
+                    </div>
+                    <div class="mb-4 lg:mb-0">
+                        <h2 class="text-center font-semibold mb-2 text-gray-800 dark:text-gray-300">Sentiment Prediction</h2>
+                        <ChartSentimentPredictTypeA />
+                    </div>
+                </div>
             </div>
             <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
                 <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
                     Coherence Score Comparison
                 </h4>
-                <Chart />
+                
             </div>
         </div>
     </div>
@@ -85,6 +95,8 @@
 
 <script setup>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import ChartSentimentRealTypeA from '@/components/chart/ChartSentimentRealTypeA.vue'
+import ChartSentimentPredictTypeA from '@/components/chart/ChartSentimentPredictTypeA.vue'
 import {
     FwbAccordion,
     FwbAccordionPanel,
