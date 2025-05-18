@@ -85,9 +85,9 @@
             </div>
             <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
                 <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-                    Coherence Score Comparison
+                    Coherence Score
                 </h4>
-                
+                <CoherenceTypeA />
             </div>
         </div>
     </div>
@@ -97,6 +97,7 @@
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import ChartSentimentRealTypeA from '@/components/chart/ChartSentimentRealTypeA.vue'
 import ChartSentimentPredictTypeA from '@/components/chart/ChartSentimentPredictTypeA.vue'
+import CoherenceTypeA from '@/components/coherence/CoherenceTypeA.vue'
 import {
     FwbAccordion,
     FwbAccordionPanel,
