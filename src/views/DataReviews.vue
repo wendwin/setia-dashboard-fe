@@ -92,7 +92,7 @@
               </thead>
               <tbody>
                 <tr v-for="(review, index) in reviews" :key="index">
-                  <td class="border border-gray-300 dark:text-white p-2 text-center">{{ index + 1 }}</td>
+                  <td class="border border-gray-300 dark:text-white p-2 text-center">{{ (page - 1) * perPage + index + 1 }}</td>
                   <td class="border border-gray-300 dark:text-white p-2 ">{{ review.name }}</td>
                   <td class="border border-gray-300 dark:text-white p-2">{{ review.review }}</td>
                   <td class="border border-gray-300 dark:text-white p-2 text-center">{{ review.rating }}</td>
@@ -103,53 +103,62 @@
             <div
               class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500  border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800">
               <span class="flex items-center col-span-3">
-                Showing {{ start }}–{{ end }} of {{ count }}
+                Showing {{ start }}–{{ end }} of {{ totalPages  }}
               </span>
               <span class="col-span-2"></span>
 
               <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
                 <nav aria-label="Table navigation">
                   <ul class="inline-flex items-center">
-                    <li>
-                      <button class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple"
-                        aria-label="Previous">
-                        <svg aria-hidden="true" class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                          <path
-                            d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                            clip-rule="evenodd" fill-rule="evenodd"></path>
-                        </svg>
-                      </button>
-                    </li>
-                    <li>
-                      <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">1</button>
-                    </li>
-                    <li>
-                      <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">2</button>
-                    </li>
-                    <li>
-                      <button class="px-3 py-1 text-white transition-colors duration-150 bg-purple-600 border border-r-0 border-purple-600 rounded-md focus:outline-none focus:shadow-outline-purple">3</button>
-                    </li>
-                    <li>
-                      <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">4</button>
-                    </li>
-                    <li><span class="px-3 py-1">...</span>
-                    </li>
-                    <li>
-                      <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">8</button>
-                    </li>
-                    <li>
-                      <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">9</button>
-                    </li>
-                    <li>
-                      <button class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-purple"
-                        aria-label="Next">
-                        <svg class="w-4 h-4 fill-current" aria-hidden="true" viewBox="0 0 20 20">
-                          <path
-                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                            clip-rule="evenodd" fill-rule="evenodd"></path>
-                        </svg>
-                      </button>
-                    </li>
+                    <ul class="inline-flex items-center">
+                      <li>
+                        <button
+                          @click="prevPage"
+                          :disabled="page === 1"
+                          class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple"
+                          aria-label="Previous"
+                        >
+                          <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                            <path
+                              d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                              clip-rule="evenodd"
+                              fill-rule="evenodd"
+                            />
+                          </svg>
+                        </button>
+                      </li>                    
+
+                      <li v-for="num in pageNumbers" :key="num">
+                        <button
+                          v-if="num !== '...'"
+                          @click="goToPage(num)"
+                          :class="[
+                            'px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple',
+                            page === num ? 'bg-purple-600 text-white border border-purple-600' : ''
+                          ]"
+                        >
+                          {{ num }}
+                        </button>
+                        <span v-else class="px-3 py-1">...</span>
+                      </li>                    
+
+                      <li>
+                        <button
+                          @click="nextPage"
+                          :disabled="page === totalPages"
+                          class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-purple"
+                          aria-label="Next"
+                        >
+                          <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                            <path
+                              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                              clip-rule="evenodd"
+                              fill-rule="evenodd"
+                            />
+                          </svg>
+                        </button>
+                      </li>
+                    </ul>
                   </ul>
                 </nav>
               </span>
@@ -165,7 +174,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch} from 'vue';
+import { ref, reactive ,watchEffect ,  onMounted, watch, computed} from 'vue';
 
 const hospitals = [
   { value: 'rsup_dr_sardjito_yogyakarta', label: 'RSUP Dr Sardjito Yogyakarta' },
@@ -198,13 +207,50 @@ const reviews = ref([]);
 const selectedLocation = ref('all');
 const selectedRating = ref('all');
 const selectedType = ref('all');
+const lastFilter = reactive({
+  location: selectedLocation.value,
+  rating: selectedRating.value,
+  type: selectedType.value
+});
 const count = ref(0);
+
+const page = ref(1)
+const perPage = 10
+const totalPages = computed(() => Math.ceil(count.value / perPage))
+
+const pageNumbers = computed(() => {
+  const total = totalPages.value
+  const current = page.value
+  const delta = 2
+  const range = []
+
+  for (let i = Math.max(1, current - delta); i <= Math.min(total, current + delta); i++) {
+    range.push(i)
+  }
+
+  if (range[0] > 2) {
+    range.unshift('...')
+  }
+  if (range[0] !== 1) {
+    range.unshift(1)
+  }
+
+  if (range[range.length - 1] < total - 1) {
+    range.push('...')
+  }
+  if (range[range.length - 1] !== total) {
+    range.push(total)
+  }
+
+  return range
+})
 
 const fetchReviews = () => {
   const location = selectedLocation.value;
   const rating = selectedRating.value;
   const type = selectedType.value;
-  fetch(`http://localhost:5000/api/data-gmaps?location=${location}&rating=${rating}&type=${type}`)
+  const currentPage = page.value;
+  fetch(`http://localhost:5000/api/data-gmaps?location=${location}&rating=${rating}&type=${type}&page=${currentPage}&per_page=${perPage}`)
 
     .then(res => res.json())
     .then(data => {
@@ -217,11 +263,52 @@ const fetchReviews = () => {
     });
 };
 
+const goToPage = (p) => {
+  if (p !== '...') {
+    page.value = p
+  }
+}
+
+const nextPage = () => {
+  if (page.value < totalPages.value) {
+    page.value++
+  }
+}
+
+const prevPage = () => {
+  if (page.value > 1) {
+    page.value--
+  }
+}
+
+const start = computed(() => {
+  return (page.value - 1) * perPage + 1
+})
+
+const end = computed(() => {
+  return Math.min(page.value * perPage, count.value)
+})
+
+
 onMounted(() => {
   fetchReviews();
 });
 
-watch([selectedLocation, selectedRating, selectedType], fetchReviews);
+// watch([selectedLocation, selectedRating, selectedType], () => {
+//   page.value = 1
+// })
+
+
+// watch([selectedLocation, selectedRating, selectedType, page], fetchReviews, );
+// Reset page ke 1 saat filter berubah
+watch([selectedLocation, selectedRating, selectedType], () => {
+  page.value = 1
+})
+
+// Fetch data saat page atau filter berubah
+watch([page, selectedLocation, selectedRating, selectedType], () => {
+  fetchReviews()
+})
 
 
 import { Bar } from 'vue-chartjs'
