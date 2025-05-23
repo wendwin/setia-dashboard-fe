@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import TablePrepro from '../../components/TablePrepro.vue'
+import TablePrepro from '../components/TablePrepro.vue'
 import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 

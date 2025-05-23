@@ -127,7 +127,6 @@
 
 <script setup>
 import { ref, reactive, onMounted, watch, computed } from 'vue';
-import { CAlert } from '@coreui/vue';
 
 const props = defineProps({ path: String });
 

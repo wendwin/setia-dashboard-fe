@@ -23,16 +23,16 @@
 
 import { ref, computed } from 'vue'
 
-import TabA from './tabs/TypeA.vue'
-import TabB from './tabs/TypeB.vue'
-import TabC from './tabs/TypeC.vue'
-import TabD from './tabs/TypeD.vue'
+import TypeA from './tabs/reviews/TypeAReviews.vue'
+import TypeB from './tabs/reviews/TypeBReviews.vue'
+import TypeC from './tabs/reviews/TypeCReviews.vue'
+import TypeD from './tabs/reviews/TypeDReviews.vue'
 
 const tabs = [
-  { name: 'type_a', label: 'Type A', component: TabA },
-  { name: 'type_b', label: 'Type B', component: TabB },
-  { name: 'type_c', label: 'Type C', component: TabC },
-  { name: 'type_d', label: 'Type D', component: TabD },
+  { name: 'type_a', label: 'Type A', component: TypeA },
+  { name: 'type_b', label: 'Type B', component: TypeB },
+  { name: 'type_c', label: 'Type C', component: TypeC },
+  { name: 'type_d', label: 'Type D', component: TypeD },
 ]
 
 const activeTab = ref(tabs[0].name)
