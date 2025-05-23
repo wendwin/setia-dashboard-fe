@@ -31,92 +31,103 @@
         </div>
         <p>Path: {{ props.path }}</p>
 
-        <div v-if="reviews.length"
-            class="my-5 overflow-x-auto bg-white shadow-xs dark:bg-gray-800 border bottom-1 border-gray-200 dark:border-none">
-            <table class="table-auto border-collapse border border-gray-400 w-full">
-                <thead>
-                    <tr>
-                        <th class="border border-gray-300 dark:text-white p-2">No</th>
-                        <th v-if="path === 'case-folding'" class="border border-gray-300 dark:text-white p-2">Case Folding</th>
-                        <th v-if="path === 'data_cleaning'" class="border border-gray-300 dark:text-white p-2">Data Cleaning</th>
-                        <th v-if="path === 'normalization'" class="border border-gray-300 dark:text-white p-2">Normalization</th>
-                        <th v-if="path === 'tokenization'" class="border border-gray-300 dark:text-white p-2">Tokenization</th>
-                        <th v-if="path === 'stemming'" class="border border-gray-300 dark:text-white p-2">Stemming</th>
-                        <th class="border border-gray-300 dark:text-white p-2">Rating</th>
-                        <th class="border border-gray-300 dark:text-white p-2">Type</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="(review, index) in reviews" :key="index">
-                        <td class="border border-gray-300 dark:text-white p-2 text-center">{{ (page - 1) * perPage + index + 1 }}</td>
-
-                        <td v-if="path === 'case-folding'" class="border border-gray-300 dark:text-white p-2 ">{{ review.casefold_text }}</td>
-                        <td v-if="path === 'data-cleaning'" class="border border-gray-300 dark:text-white p-2 ">{{ review.clean_text }}</td>
-                        <td v-if="path === 'normalization'" class="border border-gray-300 dark:text-white p-2 ">{{ review.slang_text }}</td>
-                        <td v-if="path === 'tokenization'" class="border border-gray-300 dark:text-white p-2 ">{{ review.token_text }}</td>
-                        <td v-if="path === 'stemming'" class="border border-gray-300 dark:text-white p-2 ">{{ review.stemmed_text_done }}</td>
-                        <td class="border border-gray-300 dark:text-white p-2 ">{{ review.rating }}</td>
-                        <td class="border border-gray-300 dark:text-white p-2 ">{{ review.type_rs }}</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div
-                class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500  border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800">
-                <span class="flex items-center col-span-3">
-                    Showing {{ start }}–{{ end }} of {{ totalPages }}
-                </span>
-                <span class="col-span-2"></span>
-
-                <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
-                    <nav aria-label="Table navigation">
-                        <ul class="inline-flex items-center">
-                            <ul class="inline-flex items-center">
-                                <li>
-                                    <button @click="prevPage" :disabled="page === 1"
-                                        class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple"
-                                        aria-label="Previous">
-                                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                                            <path
-                                                d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                                                clip-rule="evenodd" fill-rule="evenodd" />
-                                        </svg>
-                                    </button>
-                                </li>
-
-                                <li v-for="num in pageNumbers" :key="num">
-                                    <button v-if="num !== '...'" @click="goToPage(num)" :class="[
-                                        'px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple',
-                                        page === num ? 'bg-purple-600 text-white border border-purple-600' : ''
-                                    ]">
-                                        {{ num }}
-                                    </button>
-                                    <span v-else class="px-3 py-1">...</span>
-                                </li>
-
-                                <li>
-                                    <button @click="nextPage" :disabled="page === totalPages"
-                                        class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-purple"
-                                        aria-label="Next">
-                                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                                            <path
-                                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                                clip-rule="evenodd" fill-rule="evenodd" />
-                                        </svg>
-                                    </button>
-                                </li>
-                            </ul>
-                        </ul>
-                    </nav>
-                </span>
-            </div>
+        <div v-if="isLoading" class="flex justify-center items-center py-4">
+            <svg class="animate-spin h-6 w-6 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none"
+                viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+            </svg>
         </div>
 
-        <p v-else class="text-center mt-5 dark:text-white font-semibold">Data Not Found...</p>
+        <div :class="{ hidden: isLoading, block: !isLoading }" v-if="!isLoading">
+            <div v-if="reviews.length"
+                class="my-5 overflow-x-auto bg-white shadow-xs dark:bg-gray-800 border bottom-1 border-gray-200 dark:border-none">
+                <table class="table-auto border-collapse border border-gray-400 w-full">
+                    <thead>
+                        <tr>
+                            <th class="border border-gray-300 dark:text-white p-2">No</th>
+                            <th v-if="path === 'case-folding'" class="border border-gray-300 dark:text-white p-2">Case Folding</th>
+                            <th v-if="path === 'data_cleaning'" class="border border-gray-300 dark:text-white p-2">Data Cleaning</th>
+                            <th v-if="path === 'normalization'" class="border border-gray-300 dark:text-white p-2">Normalization</th>
+                            <th v-if="path === 'tokenization'" class="border border-gray-300 dark:text-white p-2">Tokenization</th>
+                            <th v-if="path === 'stemming'" class="border border-gray-300 dark:text-white p-2">Stemming</th>
+                            <th class="border border-gray-300 dark:text-white p-2">Rating</th>
+                            <th class="border border-gray-300 dark:text-white p-2">Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(review, index) in reviews" :key="index">
+                            <td class="border border-gray-300 dark:text-white p-2 text-center">{{ (page - 1) * perPage + index + 1 }}</td>
+    
+                            <td v-if="path === 'case-folding'" class="border border-gray-300 dark:text-white p-2 ">{{ review.casefold_text }}</td>
+                            <td v-if="path === 'data-cleaning'" class="border border-gray-300 dark:text-white p-2 ">{{ review.clean_text }}</td>
+                            <td v-if="path === 'normalization'" class="border border-gray-300 dark:text-white p-2 ">{{ review.slang_text }}</td>
+                            <td v-if="path === 'tokenization'" class="border border-gray-300 dark:text-white p-2 ">{{ review.token_text }}</td>
+                            <td v-if="path === 'stemming'" class="border border-gray-300 dark:text-white p-2 ">{{ review.stemmed_text_done }}</td>
+                            <td class="border border-gray-300 dark:text-white p-2 ">{{ review.rating }}</td>
+                            <td class="border border-gray-300 dark:text-white p-2 ">{{ review.type_rs }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div
+                    class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500  border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800">
+                    <span class="flex items-center col-span-3">
+                        Showing {{ start }}–{{ end }} of {{ totalPages }}
+                    </span>
+                    <span class="col-span-2"></span>
+    
+                    <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
+                        <nav aria-label="Table navigation">
+                            <ul class="inline-flex items-center">
+                                <ul class="inline-flex items-center">
+                                    <li>
+                                        <button @click="prevPage" :disabled="page === 1"
+                                            class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple"
+                                            aria-label="Previous">
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                                <path
+                                                    d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                                                    clip-rule="evenodd" fill-rule="evenodd" />
+                                            </svg>
+                                        </button>
+                                    </li>
+    
+                                    <li v-for="num in pageNumbers" :key="num">
+                                        <button v-if="num !== '...'" @click="goToPage(num)" :class="[
+                                            'px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple',
+                                            page === num ? 'bg-purple-600 text-white border border-purple-600' : ''
+                                        ]">
+                                            {{ num }}
+                                        </button>
+                                        <span v-else class="px-3 py-1">...</span>
+                                    </li>
+    
+                                    <li>
+                                        <button @click="nextPage" :disabled="page === totalPages"
+                                            class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-purple"
+                                            aria-label="Next">
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                                <path
+                                                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                                    clip-rule="evenodd" fill-rule="evenodd" />
+                                            </svg>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </ul>
+                        </nav>
+                    </span>
+                </div>
+            </div>
+    
+            <p v-else class="text-center mt-5 dark:text-white font-semibold">Data Not Found...</p>
+        </div>
     </div>
 </template>
 
 <script setup>
 import { ref, reactive, onMounted, watch, computed } from 'vue';
+import { CAlert } from '@coreui/vue';
 
 const props = defineProps({ path: String });
 
@@ -147,6 +158,7 @@ const hospitals = [
     { value: 'rumah_sakit_pku_muhammadiyah_wonosari', label: 'Rumah Sakit PKU Muhammadiyah Wonosari' }
 ];
 
+const isLoading = ref(false)
 const reviews = ref([]);
 const selectedLocation = ref('all');
 const selectedRating = ref('all');
@@ -189,25 +201,25 @@ const pageNumbers = computed(() => {
     return range
 })
 
- const fetchReviews = () => {
-    const location = selectedLocation.value;
-    const rating = selectedRating.value;
-    const type = selectedType.value;
-    const currentPage = page.value;
+const fetchReviews = async () => {
+  isLoading.value = true
+  try {
+    const location = selectedLocation.value
+    const rating = selectedRating.value
+    const type = selectedType.value
+    const currentPage = page.value
 
-    fetch(`http://localhost:5000/api/data-gmaps/preprocessing/${props.path}?location=${location}&rating=${rating}&type=${type}&page=${currentPage}&per_page=${perPage}`)
+    const res = await fetch(`http://localhost:5000/api/data-gmaps/preprocessing/${props.path}?location=${location}&rating=${rating}&type=${type}&page=${currentPage}&per_page=${perPage}`)
+    const data = await res.json()
 
-        .then(res => res.json())
-        .then(data => {
-            reviews.value = data.reviews;
-            count.value = data.count;
-            console.log(data.reviews);
-        })
-        .catch(err => {
-            console.error("Gagal mengambil data:", err);
-        });
-};
-
+    reviews.value = data.reviews
+    count.value = data.count
+  } catch (err) {
+    console.error("Gagal mengambil data:", err)
+  } finally {
+    isLoading.value = false
+  }
+}
 const goToPage = (p) => {
     if (p !== '...') {
         page.value = p
