@@ -29,7 +29,6 @@
                 <option value="d">D</option>
             </select>
         </div>
-        <p>Path: {{ props.path }}</p>
 
         <div v-if="isLoading" class="flex justify-center items-center py-4">
             <svg class="animate-spin h-6 w-6 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none"

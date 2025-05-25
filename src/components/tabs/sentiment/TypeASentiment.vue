@@ -109,11 +109,6 @@
 </template>
 
 <script setup>
-// import { ref, onMounted } from 'vue'
-// import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-// // import ChartSentimentRealTypeA from '@/components/chart/ChartSentimentRealTypeA.vue'
-// // import ChartSentimentPredictTypeA from '@/components/chart/ChartSentimentPredictTypeA.vue'
-// import CoherenceTypeA from '@/components/coherence/CoherenceTypeA.vue'
 import {
     FwbAccordion,
     FwbAccordionPanel,
@@ -135,8 +130,8 @@ const maxFreqPos = computed(() =>
 );
 
 function getTagStyle(frequency, maxFrequency) {
-  const minSize = 0.9;   // Ukuran minimum (em)
-  const maxSize = 2.0;   // Ukuran maksimum (em)
+  const minSize = 0.9;  
+  const maxSize = 2.0;  
   const scale = frequency / maxFrequency;
   const size = minSize + scale * (maxSize - minSize);
 

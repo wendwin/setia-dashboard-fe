@@ -47,7 +47,7 @@
                             <fwb-accordion-header>Positive Sentiment Highlights</fwb-accordion-header>
                             <fwb-accordion-content>
                                 <p class="mb-2 text-gray-500 dark:text-gray-400">
-                                    Positive sentiment rs type a
+                                    Positive sentiment rs type c
                                 </p>
                                 <p class="text-gray-500 dark:text-gray-400">
                                     Check out this guide to learn how to <a href="/docs/getting-started/introduction/"
@@ -130,8 +130,8 @@ const maxFreqPos = computed(() =>
 );
 
 function getTagStyle(frequency, maxFrequency) {
-  const minSize = 0.9;   // Ukuran minimum (em)
-  const maxSize = 2.0;   // Ukuran maksimum (em)
+  const minSize = 0.9;   
+  const maxSize = 2.0;  
   const scale = frequency / maxFrequency;
   const size = minSize + scale * (maxSize - minSize);
 

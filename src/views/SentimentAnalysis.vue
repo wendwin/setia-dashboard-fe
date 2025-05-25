@@ -4,10 +4,10 @@
             <div class="container px-6 mx-auto grid">
                 <div class="p-4 my-5 bg-white dark:bg-[#374151] rounded-lg shadow-md focus:outline-none border-1 border-gray-100">
                     <div class="text-gray-600 py-1 px-3">
-                        <h1 class="text-lg font-semibold lg:text-[28px] mb-2 text-gray-800 dark:text-gray-300">Sentiment Insight Explorer at Hospitals in
+                        <h1 class="text-lg font-semibold lg:text-[28px] mb-2 text-gray-700 dark:text-gray-300">Sentiment Insight Explorer at Hospitals in
                             Yogyakarta</h1>
-                        <p class="text-[15px] mb-5 text-gray-800 dark:text-gray-300">Analyzing Patient Sentiment with Support Vector Machine</p>
-                        <ul class="space-y-1 text-gray-800 dark:text-gray-300 list-disc list-inside">
+                        <p class="text-[15px] mb-5 text-gray-700 dark:text-gray-300">Analyzing Patient Sentiment with Support Vector Machine</p>
+                        <ul class="space-y-1 text-gray-700 dark:text-gray-300 list-disc list-inside">
                             <li>
                                 <strong>Positive & Negative Highlights</strong><br>
                                 <span class="inline-block ml-6">
