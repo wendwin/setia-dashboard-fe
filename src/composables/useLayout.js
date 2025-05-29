@@ -66,16 +66,16 @@ const closeModal = () => {
   trapCleanup?.()
 }
 
-onMounted(() => {
-  dark.value = getThemeFromLocalStorage()
-  applyDarkClass(dark.value)
-})
-
-watch(dark, (val) => {
-  applyDarkClass(val)
-})
-
 export default function useLayout() {
+  onMounted(() => {
+    dark.value = getThemeFromLocalStorage()
+    applyDarkClass(dark.value)
+  })
+
+  watch(dark, (val) => {
+    applyDarkClass(val)
+  })
+
   return {
     dark,
     toggleTheme,

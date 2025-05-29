@@ -14,7 +14,7 @@ const router = createRouter({
             children: [
               { path: '', name: 'dashboard', component: DashboardPage },
               { path: '/data-reviews', name: 'data-reviews', component: DataReviews },
-              { path: '/pre-processing/:step', name: 'preprocessing', component: DataPreprocessing },
+              { path: '/preprocessing/:step', name: 'preprocessing', component: DataPreprocessing },
               { path: '/sentiment-analysis', name: 'sentiment-analysis', component: SentimentAnalysis },
               { path: '/topic-analysis', name: 'topic-analysis', component: TopicAnalysis },
             ]
