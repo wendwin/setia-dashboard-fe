@@ -19,7 +19,7 @@
 </template>
 
 <script setup>
-import Tab from '../components/TabReviews.vue'
+import Tab from '../components/TabPage.vue'
 </script>
 
 <style scoped></style>s
