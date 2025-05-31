@@ -23,10 +23,10 @@
 
 import { ref, computed } from 'vue'
 
-import TypeA from './tabs/reviews/TypeAReviews.vue'
-import TypeB from './tabs/reviews/TypeBReviews.vue'
-import TypeC from './tabs/reviews/TypeCReviews.vue'
-import TypeD from './tabs/reviews/TypeDReviews.vue'
+import TypeA from './tabs/topic/TypeATopic.vue'
+import TypeB from './tabs/topic/TypeBTopic.vue'
+import TypeC from './tabs/topic/TypeCTopic.vue'
+import TypeD from './tabs/topic/TypeDTopic.vue'
 
 const tabs = [
   { name: 'type_a', label: 'Type A', component: TypeA },

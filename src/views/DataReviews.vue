@@ -2,16 +2,30 @@
   <div>
     <main class="h-full pb-6 overflow-y-auto">
       <div class="container px-6 mx-auto grid">
-        <div
-          class="lg:flex items-center justify-between p-4 my-5 font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple">
-          <div class="mb-4 lg:mb-0">
-            <h1 class="text-lg lg:text-[28px] mb-2">Data Reviews Google Maps Explorer</h1>
-            <p class="text-[15px]">Menu for Data and Sentiment Insights 24 hospitals in Yogyakarta</p>
+        <header class="lg:flex gap-3 items-center justify-between my-5 text-white font-semibold ">
+          <div class="p-4 bg-blue-500 w-[70%] rounded-lg shadow-md focus:outline-none focus:shadow-outline-blue" >
+            <div class="">
+              <p class="text-lg lg:text-[28px] mb-2">Data Reviews Google Maps Explorer</p>
+              <p class="text-[15px]">Menu for Data and Sentiment Insights 24 hospitals in Yogyakarta</p>
+            </div>
           </div>
-          <div class="">
-            <p class="text-base">Total Reviews : {{ count }}</p>
+          <div class="p-4 bg-blue-500 w-[30%] rounded-lg shadow-md focus:outline-none focus:shadow-outline-blue">
+            <div class="flex items-center justify-between text-center gap-5">
+              <p class="text-lg">
+                Total Reviews
+                <count-up :end-val="count" :duration="2" />
+              </p>
+              <p class="text-lg">
+                Positive
+                <count-up :end-val="countPositive" :duration="2" />
+              </p>
+              <p class="text-lg">
+                Negative
+                <count-up :end-val="countNegative" :duration="2" />
+              </p>
+            </div>
           </div>
-        </div>
+        </header>
 
         <div class="">
           <div class="grid gap-6 mb-8 md:grid-cols-2">
@@ -174,7 +188,8 @@
 </template>
 
 <script setup>
-import { ref, reactive ,watchEffect ,  onMounted, watch, computed} from 'vue';
+import { ref, reactive, watchEffect, onMounted, watch, computed } from 'vue';
+import CountUp from 'vue-countup-v3'
 
 const hospitals = [
   { value: 'rsup_dr_sardjito_yogyakarta', label: 'RSUP Dr Sardjito Yogyakarta' },
@@ -213,6 +228,8 @@ const lastFilter = reactive({
   type: selectedType.value
 });
 const count = ref(0);
+const countPositive = ref(0);
+const countNegative = ref(0);
 
 const page = ref(1)
 const perPage = 10
@@ -256,6 +273,8 @@ const fetchReviews = () => {
     .then(data => {
       reviews.value = data.reviews;
       count.value = data.count;
+      countPositive.value = data.countPositive;
+      countNegative.value = data.countNegative;
       console.log(data.reviews);
     })
     .catch(err => {

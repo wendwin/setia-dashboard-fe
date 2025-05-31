@@ -1,0 +1,45 @@
+<template>
+  <div>
+    <div class="flex flex-wrap gap-3">
+      <button v-for="tab in tabs" :key="tab.name" @click="activeTab = tab.name" :class="[
+        'px-3 py-1 rounded-md text-sm leading-5 transition-colors duration-150 focus:outline-none border bottom-1 border-gray-200 dark:border-none',
+        activeTab === tab.name
+          ? 'bg-slate-500 text-white font-semibold border-none'
+          : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700 dark:hover:bg-gray-700 dark:hover:text-white'
+      ]">
+        {{ tab.label }}
+      </button>
+
+    </div>
+
+    <div class="flex-1 my-5">
+      <component :is="getActiveTabContent" />
+    </div>
+
+  </div>
+</template>
+
+<script setup>
+
+import { ref, computed } from 'vue'
+
+import TypeA from './tabs/reviews/TypeAReviews.vue'
+import TypeB from './tabs/reviews/TypeBReviews.vue'
+import TypeC from './tabs/reviews/TypeCReviews.vue'
+import TypeD from './tabs/reviews/TypeDReviews.vue'
+
+const tabs = [
+  { name: 'type_a', label: 'Type A', component: TypeA },
+  { name: 'type_b', label: 'Type B', component: TypeB },
+  { name: 'type_c', label: 'Type C', component: TypeC },
+  { name: 'type_d', label: 'Type D', component: TypeD },
+]
+
+const activeTab = ref(tabs[0].name)
+
+const getActiveTabContent = computed(() => {
+  return tabs.find(tab => tab.name === activeTab.value)?.component
+})
+</script>
+
+<style scoped></style>
