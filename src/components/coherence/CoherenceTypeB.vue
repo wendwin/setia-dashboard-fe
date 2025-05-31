@@ -1,17 +1,17 @@
 <template>
   <div>
     <template v-if="route.path === '/topic-analysis'">
-      <div class="grid gap-6 mb-8 md:grid-cols-2 items-start">
-        <div class="p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+      <div class="grid gap-6 mb-8 md:grid-cols-2 grid-cols-1 items-start">
+        <div class="p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 w-full overflow-x-auto min-h-[200px]">
           <Line :data="chartData[0].data" :options="chartData[0].options" />
         </div>
-        <div class="p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-          <Line :data="chartData[1].data" :options="chartData[1].options" />
+        <div class="p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 w-full overflow-x-auto min-h-[200px]">
+          <Line :data="chartData[0].data" :options="chartData[0].options" />
         </div>
       </div>
     </template>
     <template v-else>
-      <div class="p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+      <div class="p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 w-full overflow-x-auto min-h-[200px]">
         <Line :data="chartData[0].data" :options="chartData[0].options" />
       </div>
     </template>
@@ -41,8 +41,8 @@ const route = useRoute()
 const labels = [2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 const scores = {
-  positive: [0.485, 0.478, 0.460, 0.470, 0.445, 0.452, 0.440, 0.448, 0.432],
-  negative: [0.290, 0.275, 0.300, 0.282, 0.310, 0.268, 0.289, 0.295, 0.276]
+  positive: [0.573, 0.592, 0.556, 0.545, 0.546, 0.504, 0.529, 0.492, 0.516],
+  negative: [0.39, 0.427, 0.385, 0.396, 0.412, 0.42, 0.421, 0.395, 0.4]
 }
 
 const makeDataset = (label, data, color) => ({
@@ -56,6 +56,7 @@ const makeDataset = (label, data, color) => ({
 
 const chartOptions = (title, minY = null, maxY = null) => ({
   responsive: true,
+  maintainAspectRatio: false,
   scales: {
     x: {
       title: {
@@ -94,16 +95,16 @@ const chartData = computed(() => {
       {
         data: {
           labels,
-          datasets: [makeDataset('Coherence Score - Positive', scores.positive, 'rgba(75, 192, 192, 1)')]
+          datasets: [makeDataset('Positive', scores.positive, '#17a2b8')]
         },
-        options: chartOptions('Coherence Score - Positive', 0.42, 0.5)
+        options: chartOptions('Positive', 0.42, 0.5)
       },
       {
         data: {
           labels,
-          datasets: [makeDataset('Coherence Score - Negative', scores.negative, 'rgba(255, 99, 132, 1)')]
+          datasets: [makeDataset('Negative', scores.negative, '#6610f2')]
         },
-        options: chartOptions('Coherence Score - Negative', 0.26, 0.32)
+        options: chartOptions('Negative', 0.26, 0.32)
       }
     ]
   } else {
@@ -112,13 +113,21 @@ const chartData = computed(() => {
         data: {
           labels,
           datasets: [
-            makeDataset('Coherence Score - Positive', scores.positive, 'rgba(75, 192, 192, 1)'),
-            makeDataset('Coherence Score - Negative', scores.negative, 'rgba(255, 99, 132, 1)')
+            makeDataset('Positive', scores.positive, '#17a2b8'),
+            makeDataset('Negative', scores.negative, '#6610f2')
           ]
         },
-        options: chartOptions('Coherence Score Comparison (Yogyakarta)', 0, 1)
+        options: chartOptions('Coherence Score per Number of Topics', 0, 1)
       }
     ]
   }
 })
 </script>
+
+
+<style scoped>
+canvas {
+  width: 100% !important;
+  height: auto !important;
+}
+</style>

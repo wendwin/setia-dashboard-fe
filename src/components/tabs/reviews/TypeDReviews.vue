@@ -74,7 +74,7 @@
             </div>
         </div>
 
-        <div class="grid gap-6 mb-8 md:grid-cols-2">
+        <div class="grid gap-6 mb-8 lg:grid-cols-2">
             <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 shadow-md border border-gray-200 dark:border-none">
                 <!-- <h4 class="mb-5 text-center text-lg font-semibold text-gray-800 dark:text-gray-300">
                     Persentase Sentiment Hospitals Type A
@@ -82,7 +82,7 @@
                 <h4 class="mb-6 font-semibold text-gray-800 dark:text-gray-300">
                     Sentiment Distribution for Type A Hospitals
                 </h4>
-                <div class="lg:flex justify-evenly">
+                <div class="md:flex justify-evenly">
                     <div class="mb-10 lg:mb-0">
                         <h2 class="text-center font-semibold mb-2 text-gray-800 dark:text-gray-300">Sentiment Real</h2>
                         <ChartSentimentRealTypeD />
