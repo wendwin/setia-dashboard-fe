@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="grid gap-6 mb-8 md:grid-cols-2 items-start">
-            <div class="lg:flex items-center justify-evenly p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 md:min-h-[202px]">
+            <div class="lg:flex items-center justify-evenly p-4 bg-white rounded-lg shadow-md border border-gray-200 dark:border-none dark:bg-gray-800 md:min-h-[202px]">
                 <div class="flex items-center mb-5 lg:mb-0">
                     <div
                         class="p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500">
@@ -12,7 +12,7 @@
                             Total Reviews
                         </p>
                         <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                            8,795
+                            4,140
                         </p>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                 </div>
             </div>
 
-            <div class="p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+            <div class="p-4 bg-white rounded-lg dark:bg-gray-800 shadow-md border border-gray-200 dark:border-none">
                 <div>
                     <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
                         Summary Insight
@@ -75,7 +75,7 @@
         </div>
 
         <div class="grid gap-6 mb-8 md:grid-cols-2">
-            <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+            <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 shadow-md border border-gray-200 dark:border-none">
                 <!-- <h4 class="mb-5 text-center text-lg font-semibold text-gray-800 dark:text-gray-300">
                     Persentase Sentiment Hospitals Type A
                 </h4> -->
@@ -93,7 +93,7 @@
                     </div>
                 </div>
             </div>
-            <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+            <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 shadow-md border border-gray-200 dark:border-none">
                 <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
                     Coherence Score
                 </h4>

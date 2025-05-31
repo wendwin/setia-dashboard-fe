@@ -2,7 +2,7 @@
   <div>
     <div class="flex flex-wrap gap-3">
       <button v-for="tab in tabs" :key="tab.name" @click="activeTab = tab.name" :class="[
-        'px-3 py-1 border rounded-md text-sm leading-5 transition-colors duration-150 focus:outline-none border-none',
+        'px-3 py-1 rounded-md text-sm leading-5 transition-colors duration-150 focus:outline-none border bottom-1 border-gray-200 dark:border-none',
         activeTab === tab.name
           ? 'bg-slate-500 text-white font-semibold border-none'
           : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700 dark:hover:bg-gray-700 dark:hover:text-white'
