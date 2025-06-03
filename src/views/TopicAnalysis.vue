@@ -54,9 +54,9 @@
 
                 <TabTopic />
 
-                <div class="flex justify-end items-center p-4 cursor-pointer" @click="scrollToTop">
-                    <div
-                        class="p-5 bg-blue-500 rounded-full shadow-md focus:outline-none w-5 h-5 flex justify-center items-center">
+                <div class="flex justify-end items-center p-4">
+                    <div  @click="scrollToTop"
+                        class="p-5 bg-blue-500 rounded-full shadow-md focus:outline-none w-5 h-5 flex justify-center items-center cursor-pointer">
                        <font-awesome-icon :icon="['fas', 'arrow-up']" class="text-white"/>
                     </div>
                 </div>
