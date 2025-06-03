@@ -1,7 +1,7 @@
 <template>
             <div class="container px-6 mx-auto grid h-full overflow-y-auto" ref="scrollContainer">
                 <div
-                    class="p-4 my-5 bg-white dark:bg-[#374151] rounded-lg shadow-md focus:outline-none border-1 border-gray-100">
+                    class="p-4 mt-5 bg-white dark:bg-[#374151] rounded-lg shadow-md focus:outline-none border-1 border-gray-100">
                     <div class="text-gray-600 py-1 px-3">
                         <h1 class="text-lg font-semibold lg:text-[28px] mb-2 text-gray-700 dark:text-gray-300">Topic
                             Insight Explorer at Hospitals in
