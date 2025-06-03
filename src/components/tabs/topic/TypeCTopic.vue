@@ -1,8 +1,8 @@
 <template>
     <div>
-        <div class="grid gap-6 mb-8 md:grid-cols-2 items-start">
-            <div class="p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-                <div>
+        <div class="grid gap-6 mb-8 md:grid-cols-2 items-stretch">
+            <div class="p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 h-full flex flex-col ">
+                <div class="flex-grow flex flex-col">
                     <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
                         Positive Topic Highlights
                     </h4>
@@ -34,6 +34,14 @@
                                 </p>
                             </fwb-accordion-content>
                         </fwb-accordion-panel>
+                        <fwb-accordion-panel>
+                            <fwb-accordion-header>Topic 4</fwb-accordion-header>
+                            <fwb-accordion-content>
+                                <p class="mb-2 text-gray-500 dark:text-gray-400">
+                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates accusamus rem dolor vero provident. Eaque deleniti necessitatibus eius.
+                                </p>
+                            </fwb-accordion-content>
+                        </fwb-accordion-panel>
                     </fwb-accordion>
                 </div>
             </div>
@@ -60,15 +68,6 @@
                                     <p class="mb-2 text-gray-500 dark:text-gray-400">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni expedita
                                         exercitationem deserunt ipsam distinctio est, eligendi non ducimus?
-                                    </p>
-                                </fwb-accordion-content>
-                            </fwb-accordion-panel>
-                            <fwb-accordion-panel>
-                                <fwb-accordion-header>Topic 3</fwb-accordion-header>
-                                <fwb-accordion-content>
-                                    <p class="mb-2 text-gray-500 dark:text-gray-400">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit sunt quasi
-                                        laborum. Possimus earum sint iusto optio magni.
                                     </p>
                                 </fwb-accordion-content>
                             </fwb-accordion-panel>
