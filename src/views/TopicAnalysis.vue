@@ -1,48 +1,66 @@
 <template>
-    <div>
-        <main class="h-full overflow-y-auto">
-            <div class="container px-6 mx-auto grid">
-                <div class="p-4 my-5 bg-white dark:bg-[#374151] rounded-lg shadow-md focus:outline-none border-1 border-gray-100">
+            <div class="container px-6 mx-auto grid h-full overflow-y-auto" ref="scrollContainer">
+                <div
+                    class="p-4 my-5 bg-white dark:bg-[#374151] rounded-lg shadow-md focus:outline-none border-1 border-gray-100">
                     <div class="text-gray-600 py-1 px-3">
-                        <h1 class="text-lg font-semibold lg:text-[28px] mb-2 text-gray-700 dark:text-gray-300">Topic Insight Explorer at Hospitals in
+                        <h1 class="text-lg font-semibold lg:text-[28px] mb-2 text-gray-700 dark:text-gray-300">Topic
+                            Insight Explorer at Hospitals in
                             Yogyakarta</h1>
-                        <p class="text-[15px] mb-5 text-gray-700 dark:text-gray-300">Unveiling Key Discussion Topics with BERTopic Analysis</p>
+                        <p class="text-[15px] mb-5 text-gray-700 dark:text-gray-300">Unveiling Key Discussion Topics
+                            with BERTopic Analysis</p>
                         <ul class="space-y-1 text-gray-700 dark:text-gray-300 list-disc list-inside">
                             <li>
                                 <strong>Topic Highlights</strong><br>
                                 <span class="inline-block ml-6">
-                                    Menyajikan ringkasan utama dari topik yang ditemukan, termasuk topik positif dan negatif. Setiap topik mencakup kata-kunci utama dan wawasan penting yang dapat membantu memahami konteks ulasan atau komentar.
+                                    Menyajikan ringkasan utama dari topik yang ditemukan, termasuk topik positif dan
+                                    negatif. Setiap topik mencakup kata-kunci utama dan wawasan penting yang dapat
+                                    membantu memahami konteks ulasan atau komentar.
                                 </span>
                             </li>
                             <li>
                                 <strong>Coherence Score</strong><br>
                                 <span class="inline-block ml-6">
-                                   Menampilkan visualisasi skor koherensi setiap topik yang ditemukan. Skor ini menunjukkan seberapa baik kata-kata dalam topik saling terkait secara semantik, dengan skor lebih tinggi menunjukkan kualitas topik yang lebih baik.
+                                    Menampilkan visualisasi skor koherensi setiap topik yang ditemukan. Skor ini
+                                    menunjukkan seberapa baik kata-kata dalam topik saling terkait secara semantik,
+                                    dengan skor lebih tinggi menunjukkan kualitas topik yang lebih baik.
                                 </span>
                             </li>
                             <li>
                                 <strong>Words Topic</strong><br>
                                 <span class="inline-block ml-6">
-                                    Daftar kata-kata utama yang menjadi ciri khas setiap topik. Ini membantu menggambarkan tema atau subjek yang mendominasi dalam setiap topik.
+                                    Daftar kata-kata utama yang menjadi ciri khas setiap topik. Ini membantu
+                                    menggambarkan tema atau subjek yang mendominasi dalam setiap topik.
                                 </span>
                             </li>
                             <li>
                                 <strong>Topic Distance Map</strong><br>
                                 <span class="inline-block ml-6">
-                                    Visualisasi peta jarak antar topik menggunakan diagram yang menunjukkan hubungan atau kemiripan antar topik. Topik yang berdekatan menunjukkan hubungan semantik yang lebih erat.
+                                    Visualisasi peta jarak antar topik menggunakan diagram yang menunjukkan hubungan
+                                    atau kemiripan antar topik. Topik yang berdekatan menunjukkan hubungan semantik yang
+                                    lebih erat.
                                 </span>
                             </li>
                             <li>
                                 <strong>Representative Sentence</strong><br>
                                 <span class="inline-block ml-6">
-                                   Tabel yang memuat kalimat representatif dari data untuk setiap topik. Kalimat ini dipilih karena merepresentasikan isi utama dari topik tersebut dan membantu memahami konteks ulasan atau komentar secara lebih spesifik.
+                                    Tabel yang memuat kalimat representatif dari data untuk setiap topik. Kalimat ini
+                                    dipilih karena merepresentasikan isi utama dari topik tersebut dan membantu memahami
+                                    konteks ulasan atau komentar secara lebih spesifik.
                                 </span>
                             </li>
                         </ul>
                     </div>
                 </div>
 
-                <TabTopic/>
+                <TabTopic />
+
+                <div class="flex justify-end items-center p-4 cursor-pointer" @click="scrollToTop">
+                    <div
+                        class="p-5 bg-blue-500 rounded-full shadow-md focus:outline-none w-5 h-5 flex justify-center items-center">
+                       <font-awesome-icon :icon="['fas', 'arrow-up']" class="text-white"/>
+                    </div>
+                </div>
+
                 <!-- <div class="">
                     <div class="flex flex-wrap gap-3 items-center mt-4">
                         <h4 class=" text-gray-800 dark:text-gray-300">Filter By</h4>
@@ -157,14 +175,21 @@
 
                 </div> -->
             </div>
-        </main>
-    </div>
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import TabTopic from '../components/TabTopic.vue';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+const scrollContainer = ref(null)
+
+function scrollToTop() {
+  if (scrollContainer.value) {
+    scrollContainer.value.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+}
+
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
