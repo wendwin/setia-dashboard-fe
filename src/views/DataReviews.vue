@@ -348,7 +348,7 @@ const chartData1 = {
   datasets: [
     {
       label: 'Count',
-      data: [204, 40, 54, 46, 644],
+      data: [578, 109, 161, 262, 1149],
       backgroundColor: '#dc3545',
       borderColor: 'transparent',
       borderWidth: 2.5,
@@ -362,7 +362,7 @@ const chartData2 = {
   datasets: [
     {
       label: 'Count',
-      data: [100, 220, 150, 80, 300],
+      data: [2019, 441, 599, 1257, 7946],
       backgroundColor: '#007bff',
       borderColor: 'transparent',
       borderWidth: 2.5,
@@ -376,7 +376,7 @@ const chartData3 = {
   datasets: [
     {
       label: 'Count',
-      data: [50, 90, 130, 40, 60],
+      data: [629, 136, 170, 246, 2817],
       backgroundColor: '#28a745',
       borderColor: 'transparent',
       borderWidth: 2.5,
@@ -390,7 +390,7 @@ const chartData4 = {
   datasets: [
     {
       label: 'Count',
-      data: [300, 180, 260, 90, 120],
+      data: [794, 168, 197, 292, 2689],
       backgroundColor: '#ffc107',
       borderColor: 'transparent',
       borderWidth: 2.5,
