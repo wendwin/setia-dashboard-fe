@@ -77,6 +77,8 @@
 
         <CoherenceTypeB />
 
+        <WordTypeB/>
+
         <div
             class="mb-5 overflow-hidden w-full h-[95vh] bg-white dark:bg-[#374151] rounded-lg shadow-md focus:outline-none border-1 border-gray-100">
             <p class="p-4 font-semibold text-gray-800 dark:text-gray-300">Positive Topic Distance Map</p>
@@ -96,6 +98,7 @@
 
 <script setup>
 import CoherenceTypeB from '@/components/coherence/CoherenceTypeB.vue'
+import WordTypeB from '@/components/words/WordTypeB.vue'
 import {
     FwbAccordion,
     FwbAccordionPanel,
