@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <div class="flex flex-wrap gap-3">
-      <button v-for="tab in tabs" :key="tab.name" @click="activeTab = tab.name" :class="[
+  <div ref="tabContent">
+    <div class="flex flex-wrap gap-3 mt-5">
+      <button v-for="tab in tabs" :key="tab.name" @click="selectTab(tab.name)" :class="[
         'px-3 py-1 border rounded-md text-sm leading-5 transition-colors duration-150 focus:outline-none border-none',
         activeTab === tab.name
           ? 'bg-slate-500 text-white font-semibold border-none'
@@ -21,7 +21,7 @@
 
 <script setup>
 
-import { ref, computed } from 'vue'
+import { ref, computed, nextTick } from 'vue'
 
 import TypeA from './tabs/sentiment/TypeASentiment.vue'
 import TypeB from './tabs/sentiment/TypeBSentiment.vue'
@@ -36,10 +36,17 @@ const tabs = [
 ]
 
 const activeTab = ref(tabs[0].name)
+const tabContent = ref(null)
 
 const getActiveTabContent = computed(() => {
   return tabs.find(tab => tab.name === activeTab.value)?.component
 })
+
+const selectTab = async (tabName) => {
+  activeTab.value = tabName
+  await nextTick()
+  tabContent.value?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+}
 </script>
 
 <style scoped></style>

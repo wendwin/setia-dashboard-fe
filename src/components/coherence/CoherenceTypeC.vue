@@ -6,7 +6,7 @@
           <Line :data="chartData[0].data" :options="chartData[0].options" />
         </div>
         <div class="p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 w-full overflow-x-auto min-h-[200px]">
-          <Line :data="chartData[0].data" :options="chartData[0].options" />
+          <Line :data="chartData[1].data" :options="chartData[1].options" />
         </div>
       </div>
     </template>
@@ -102,7 +102,7 @@ const chartData = computed(() => {
       {
         data: {
           labels,
-          datasets: [makeDataset('Negative', scores.negative, '##20c997')]
+          datasets: [makeDataset('Negative', scores.negative, '#20c997')]
         },
         options: chartOptions('Negative', 0.26, 0.33)
       }

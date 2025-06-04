@@ -6,7 +6,7 @@
           <Line :data="chartData[0].data" :options="chartData[0].options" />
         </div>
         <div class="p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 w-full overflow-x-auto min-h-[250px]">
-          <Line :data="chartData[0].data" :options="chartData[0].options" />
+          <Line :data="chartData[1].data" :options="chartData[1].options" />
         </div>
       </div>
     </template>
@@ -95,14 +95,14 @@ const chartData = computed(() => {
       {
         data: {
           labels,
-          datasets: [makeDataset('Positive', scores.positive, '#fd7e14')]
+          datasets: [makeDataset('Positive', scores.positive, '#6f42c1')]
         },
         options: chartOptions('Positive', 0.44, 0.51)
       },
       {
         data: {
           labels,
-          datasets: [makeDataset('Negative', scores.negative, '##20c997')]
+          datasets: [makeDataset('Negative', scores.negative, '#e83e8c')]
         },
         options: chartOptions('Negative', 0.26, 0.33)
       }
@@ -113,8 +113,8 @@ const chartData = computed(() => {
         data: {
           labels,
           datasets: [
-            makeDataset('Positive', scores.positive, '#fd7e14'),
-            makeDataset('Negative', scores.negative, '#20c997')
+            makeDataset('Positive', scores.positive, '#6f42c1'),
+            makeDataset('Negative', scores.negative, '#e83e8c')
           ]
         },
         options: chartOptions('Coherence Score per Number of Topics', 0, 1)
