@@ -3,23 +3,40 @@
     <main class="h-full pb-6 overflow-y-auto">
       <div class="container px-6 mx-auto grid">
         <header class="lg:flex gap-3 items-center justify-between my-5 text-white font-semibold ">
-          <div class="p-4 bg-blue-500 w-[70%] rounded-lg shadow-md focus:outline-none focus:shadow-outline-blue" >
+          <div class="p-4 bg-blue-500 lg:w-[70%] rounded-lg shadow-md focus:outline-none focus:shadow-outline-blue">
             <div class="">
               <p class="text-lg lg:text-[28px] mb-2">Data Reviews Google Maps Explorer</p>
               <p class="text-[15px]">Menu for Data and Sentiment Insights 24 hospitals in Yogyakarta</p>
             </div>
           </div>
-          <div class="p-4 bg-blue-500 w-[30%] rounded-lg shadow-md focus:outline-none focus:shadow-outline-blue">
+          <div class="hidden h-full lg:block p-4 bg-blue-500 w-[30%] rounded-lg shadow-md focus:outline-none focus:shadow-outline-blue">
             <div class="flex items-center justify-between text-center gap-5">
-              <p class="text-lg">
+              <p class="lg:text-sm xl:text-lg">
                 Total Reviews
                 <count-up :end-val="count" :duration="2" />
               </p>
-              <p class="text-lg">
+              <p class="lg:text-sm xl:text-lg">
                 Positive
                 <count-up :end-val="countPositive" :duration="2" />
               </p>
-              <p class="text-lg">
+              <p class="lg:text-sm xl:text-lg">
+                Negative
+                <count-up :end-val="countNegative" :duration="2" />
+              </p>
+            </div>
+          </div>
+          <div
+            class="p-4 mt-3 lg:hidden bg-blue-500 lg:w-[70%] rounded-lg shadow-md focus:outline-none focus:shadow-outline-blue">
+            <div class="flex items-center justify-evenly text-center gap-5">
+              <p class="text-base">
+                Total Reviews
+                <count-up :end-val="count" :duration="2" />
+              </p>
+              <p class="text-base">
+                Positive
+                <count-up :end-val="countPositive" :duration="2" />
+              </p>
+              <p class="text-base">
                 Negative
                 <count-up :end-val="countNegative" :duration="2" />
               </p>
@@ -27,7 +44,22 @@
           </div>
         </header>
 
-        <div class="">
+        <div class="w-full overflow-x-auto mb-4">
+          <div class="min-w-[600px] p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 border bottom-1 border-gray-200 dark:border-none">
+             <h4 class="mb-6 font-semibold text-gray-800 dark:text-gray-300">
+                Rating Count
+              </h4>
+            <div class="">
+              <Bar :data="chartDataGrouped" :options="chartOptions" :style="{ height: isLargeScreen ? '100%' : '350px' }" />
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="min-w-0 p-4 mb-8 bg-white rounded-lg shadow-xs dark:bg-gray-800 border bottom-1 border-gray-200 dark:border-none">
+          <Bar :data="chartDataGrouped" :options="chartOptions" />
+        </div> -->
+
+        <!-- <div class="">
           <div class="grid gap-6 mb-8 md:grid-cols-2">
             <div
               class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 border bottom-1 border-gray-200 dark:border-none">
@@ -35,6 +67,7 @@
                 Rating Count for Type A
               </h4>
               <Bar :data="chartData1" :options="chartOptions" />
+
             </div>
             <div
               class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 border bottom-1 border-gray-200 dark:border-none">
@@ -58,10 +91,10 @@
               <Bar :data="chartData4" :options="chartOptions" />
             </div>
           </div>
-        </div>
+        </div> -->
 
 
-        <div class="">
+        <div class="w-full overflow-x-auto">
           <div class="flex flex-wrap gap-3 items-center mt-4">
             <h4 class=" text-gray-800 dark:text-gray-300">Filter By</h4>
             <select v-model="selectedLocation" @change="fetchReviews"
@@ -188,8 +221,23 @@
 </template>
 
 <script setup>
-import { ref, reactive, watchEffect, onMounted, watch, computed } from 'vue';
+import { ref, reactive, watchEffect, onMounted, onUnmounted, watch, computed } from 'vue';
 import CountUp from 'vue-countup-v3'
+
+const isLargeScreen = ref(false)
+
+function handleResize() {
+  isLargeScreen.value = window.innerWidth >= 1024
+}
+
+onMounted(() => {
+  handleResize()
+  window.addEventListener('resize', handleResize)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', handleResize)
+})
 
 const hospitals = [
   { value: 'rsup_dr_sardjito_yogyakarta', label: 'RSUP Dr Sardjito Yogyakarta' },
@@ -338,58 +386,41 @@ import {
   Legend,
   BarElement,
   CategoryScale,
-  LinearScale
+  LinearScale,
+  LogarithmicScale
 } from 'chart.js'
 
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
+ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, LogarithmicScale)
 
-const chartData1 = {
+const chartDataGrouped = {
   labels: [1, 2, 3, 4, 5],
   datasets: [
     {
-      label: 'Count',
+      label: 'Type A',
       data: [578, 109, 161, 262, 1149],
       backgroundColor: '#dc3545',
       borderColor: 'transparent',
       borderWidth: 2.5,
       barPercentage: 0.4
-    }
-  ]
-}
-
-const chartData2 = {
-  labels: [1, 2, 3, 4, 5],
-  datasets: [
+    },
     {
-      label: 'Count',
+      label: 'Type B',
       data: [2019, 441, 599, 1257, 7946],
       backgroundColor: '#007bff',
       borderColor: 'transparent',
       borderWidth: 2.5,
       barPercentage: 0.4
-    }
-  ]
-}
-
-const chartData3 = {
-  labels: [1, 2, 3, 4, 5],
-  datasets: [
+    },
     {
-      label: 'Count',
+      label: 'Type C',
       data: [629, 136, 170, 246, 2817],
       backgroundColor: '#28a745',
       borderColor: 'transparent',
       borderWidth: 2.5,
       barPercentage: 0.4
-    }
-  ]
-}
-
-const chartData4 = {
-  labels: [1, 2, 3, 4, 5],
-  datasets: [
+    },
     {
-      label: 'Count',
+      label: 'Type D',
       data: [794, 168, 197, 292, 2689],
       backgroundColor: '#ffc107',
       borderColor: 'transparent',
@@ -401,20 +432,133 @@ const chartData4 = {
 
 const chartOptions = {
   responsive: true,
+  maintainAspectRatio: false,
   scales: {
     y: {
+      type: 'logarithmic',
       ticks: {
-        stepSize: 100
-      },
-      grid: {}
+        callback: function (value) {
+          return Number(value.toString());
+        }
+      }
     },
     x: {
       grid: {
         display: false
+      },
+      ticks: {
+        autoSkip: false,
+        maxRotation: 45,
+        minRotation: 0
       }
+    }
+  },
+  plugins: {
+    legend: {
+      position: 'top',
+      labels: {
+        boxWidth: 25
+      }
+    },
+    tooltip: {
+      mode: 'index',
+      intersect: false
     }
   }
 }
+
+// const chartData1 = {
+//   labels: [1, 2, 3, 4, 5],
+//   datasets: [
+//     {
+//       label: 'Count',
+//       data: [578, 109, 161, 262, 1149],
+//       backgroundColor: '#dc3545',
+//       borderColor: 'transparent',
+//       borderWidth: 2.5,
+//       barPercentage: 0.4
+//     }
+//   ]
+// }
+
+// const chartData2 = {
+//   labels: [1, 2, 3, 4, 5],
+//   datasets: [
+//     {
+//       label: 'Count',
+//       data: [2019, 441, 599, 1257, 7946],
+//       backgroundColor: '#007bff',
+//       borderColor: 'transparent',
+//       borderWidth: 2.5,
+//       barPercentage: 0.4
+//     }
+//   ]
+// }
+
+// const chartData3 = {
+//   labels: [1, 2, 3, 4, 5],
+//   datasets: [
+//     {
+//       label: 'Count',
+//       data: [629, 136, 170, 246, 2817],
+//       backgroundColor: '#28a745',
+//       borderColor: 'transparent',
+//       borderWidth: 2.5,
+//       barPercentage: 0.4
+//     }
+//   ]
+// }
+
+// const chartData4 = {
+//   labels: [1, 2, 3, 4, 5],
+//   datasets: [
+//     {
+//       label: 'Count',
+//       data: [794, 168, 197, 292, 2689],
+//       backgroundColor: '#ffc107',
+//       borderColor: 'transparent',
+//       borderWidth: 2.5,
+//       barPercentage: 0.4
+//     }
+//   ]
+// }
+
+
+// const chartOptions = {
+//   responsive: true,
+//   scales: {
+//     y: {
+//       ticks: {
+//         stepSize: 100
+//       },
+//       grid: {}
+//     },
+//     x: {
+//       grid: {
+//         display: false
+//       }
+//     }
+//   }
+// }
+
+// const chartOptions = {
+//   responsive: true,
+//   scales: {
+//     y: {
+//       type: 'logarithmic',
+//       ticks: {
+//         callback: function (value) {
+//           return Number(value.toString());
+//         }
+//       }
+//     },
+//     x: {
+//       grid: {
+//         display: false
+//       }
+//     }
+//   }
+// }
 
 </script>
 
