@@ -11,7 +11,7 @@
             <router-link
               class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
               :to="{ name: 'dashboard' }">
-              <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg " aria-hidden="true"
+              <span class="absolute inset-y-0 left-0 w-1 bg-blue-500 rounded-tr-lg rounded-br-lg " aria-hidden="true"
                 v-show="$route.path === '/'"></span>
               <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
                 stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -28,7 +28,7 @@
             <router-link
               class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
               :to="{ name: 'data-reviews' }">
-              <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"
+              <span class="absolute inset-y-0 left-0 w-1 bg-blue-500 rounded-tr-lg rounded-br-lg" aria-hidden="true"
                 v-show="$route.path === '/data-reviews'"></span>
               <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
                 stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -63,32 +63,32 @@
                 class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
                 aria-label="submenu">         
                 <li class="relative px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                  <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+                  <span class="absolute inset-y-0 left-0 w-1 bg-blue-500 rounded-tr-lg rounded-br-lg"
                     v-show="$route.params.step === 'case-folding'" aria-hidden="true"></span>
                   <router-link class="w-full" :to="{ name: 'preprocessing', params: { step: 'case-folding' } }">Case Folding</router-link>
                 </li>         
                 <li class="relative px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                  <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+                  <span class="absolute inset-y-0 left-0 w-1 bg-blue-500 rounded-tr-lg rounded-br-lg"
                     v-show="$route.params.step === 'data-cleaning'" aria-hidden="true"></span>
                   <router-link class="w-full" :to="{ name: 'preprocessing', params: { step: 'data-cleaning' } }">Data Cleaning</router-link>
                 </li>         
                 <li class="relative px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                  <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+                  <span class="absolute inset-y-0 left-0 w-1 bg-blue-500 rounded-tr-lg rounded-br-lg"
                     v-show="$route.params.step === 'normalization'" aria-hidden="true"></span>
                   <router-link class="w-full" :to="{ name: 'preprocessing', params: { step: 'normalization' } }">Normalization</router-link>
                 </li>         
                 <li class="relative px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                  <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+                  <span class="absolute inset-y-0 left-0 w-1 bg-blue-500 rounded-tr-lg rounded-br-lg"
                     v-show="$route.params.step === 'tokenization'" aria-hidden="true"></span>
                   <router-link class="w-full" :to="{ name: 'preprocessing', params: { step: 'tokenization' } }">Tokenizing</router-link>
                 </li>         
                 <li class="relative px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                  <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+                  <span class="absolute inset-y-0 left-0 w-1 bg-blue-500 rounded-tr-lg rounded-br-lg"
                     v-show="$route.params.step === 'stemming'" aria-hidden="true"></span>
                   <router-link class="w-full" :to="{ name: 'preprocessing', params: { step: 'stemming' } }">Stemming</router-link>
                 </li>         
                 <li class="relative px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                  <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+                  <span class="absolute inset-y-0 left-0 w-1 bg-blue-500 rounded-tr-lg rounded-br-lg"
                     v-show="$route.params.step === 'representation'" aria-hidden="true"></span>
                   <a class="w-full">Representation</a>
                 </li>         
@@ -99,7 +99,7 @@
             <router-link
               class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
               :to="{ name: 'sentiment-analysis' }">
-              <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"
+              <span class="absolute inset-y-0 left-0 w-1 bg-blue-500 rounded-tr-lg rounded-br-lg" aria-hidden="true"
                 v-show="$route.path === '/sentiment-analysis'"></span>
               <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
                 stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -114,7 +114,7 @@
             <router-link
               class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
               :to="{ name: 'topic-analysis' }">
-              <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"
+              <span class="absolute inset-y-0 left-0 w-1 bg-blue-500 rounded-tr-lg rounded-br-lg" aria-hidden="true"
                 v-show="$route.path === '/topic-analysis'"></span>
               <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
                 stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -128,7 +128,7 @@
           <!-- <li class="relative px-6 py-3">
             <router-link
               class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-              <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"
+              <span class="absolute inset-y-0 left-0 w-1 bg-blue-500 rounded-tr-lg rounded-br-lg" aria-hidden="true"
                 v-show="$route.path === '/topic-tools'"></span>
               <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
                 stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -168,7 +168,7 @@
               <router-link  @click="closeSideMenu"
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                 :to="{ name: 'dashboard' }">
-                <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg "
+                <span class="absolute inset-y-0 left-0 w-1 bg-blue-500 rounded-tr-lg rounded-br-lg "
                   aria-hidden="true" v-show="$route.path === '/'"></span>
                 <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
                   stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -184,7 +184,7 @@
             <li class="relative px-6 py-3">
               <router-link  @click="closeSideMenu"
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" :to="{ name: 'data-reviews' }">
-                <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg "
+                <span class="absolute inset-y-0 left-0 w-1 bg-blue-500 rounded-tr-lg rounded-br-lg "
                   aria-hidden="true" v-show="$route.path === '/data-reviews'"></span>
                 <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
                   stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -221,28 +221,28 @@
                   aria-label="submenu">
 
                   <li class="relative px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                    <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+                    <span class="absolute inset-y-0 left-0 w-1 bg-blue-500 rounded-tr-lg rounded-br-lg"
                       v-show="$route.path === '/preprocessing/case-folding'" aria-hidden="true"></span>
                     <router-link class="w-full" :to="{ name: 'preprocessing', params: { step: 'case-folding' } }" @click="closeSideMenu">Case Folding</router-link>
                   </li>
                 
                   <li class="relative px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                    <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+                    <span class="absolute inset-y-0 left-0 w-1 bg-blue-500 rounded-tr-lg rounded-br-lg"
                       v-show="$route.path === '/preprocessing/data-cleaning'" aria-hidden="true"></span>
                     <router-link class="w-full" :to="{ name: 'preprocessing', params: { step: 'data-cleaning' } }" @click="closeSideMenu">Data Cleaning</router-link>
                   </li>
                   <li class="relative px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                    <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+                    <span class="absolute inset-y-0 left-0 w-1 bg-blue-500 rounded-tr-lg rounded-br-lg"
                       v-show="$route.path === '/preprocessing/normalization'" aria-hidden="true"></span>
                     <router-link class="w-full" :to="{ name: 'preprocessing', params: { step: 'normalization' } }" @click="closeSideMenu">Normalization</router-link>
                   </li>
                   <li class="relative px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                    <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+                    <span class="absolute inset-y-0 left-0 w-1 bg-blue-500 rounded-tr-lg rounded-br-lg"
                       v-show="$route.path === '/preprocessing/tokenization'" aria-hidden="true"></span>
                     <router-link class="w-full" :to="{ name: 'preprocessing', params: { step: 'tokenization' } }" @click="closeSideMenu">Tokenizing</router-link>
                   </li>
                   <li class="relative px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                    <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+                    <span class="absolute inset-y-0 left-0 w-1 bg-blue-500 rounded-tr-lg rounded-br-lg"
                       v-show="$route.path === '/preprocessing/stemming'" aria-hidden="true"></span>
                     <router-link class="w-full" :to="{ name: 'preprocessing', params: { step: 'stemming' } }" @click="closeSideMenu">Stemming</router-link>
                   </li>
@@ -256,7 +256,7 @@
             <li class="relative px-6 py-3">
               <router-link  @click="closeSideMenu"
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" :to="{ name: 'sentiment-analysis' }">
-                <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg "
+                <span class="absolute inset-y-0 left-0 w-1 bg-blue-500 rounded-tr-lg rounded-br-lg "
                   aria-hidden="true" v-show="$route.path === '/sentiment-analysis'"></span>
                 <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
                   stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -270,7 +270,7 @@
             <li class="relative px-6 py-3">
               <router-link  @click="closeSideMenu"
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" :to="{ name: 'topic-analysis' }">
-                <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg "
+                <span class="absolute inset-y-0 left-0 w-1 bg-blue-500 rounded-tr-lg rounded-br-lg "
                   aria-hidden="true" v-show="$route.path === '/topic-analysis'"></span>
                 <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
                   stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -284,7 +284,7 @@
             <!-- <li class="relative px-6 py-3">
               <router-link
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"
+                <span class="absolute inset-y-0 left-0 w-1 bg-blue-500 rounded-tr-lg rounded-br-lg" aria-hidden="true"
                   v-show="$route.path === '/topic-tools'"></span>
                 <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
                   stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
