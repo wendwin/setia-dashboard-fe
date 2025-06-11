@@ -240,31 +240,33 @@ onUnmounted(() => {
 })
 
 const hospitals = [
-  { value: 'rsup_dr_sardjito_yogyakarta', label: 'RSUP Dr Sardjito Yogyakarta' },
-  { value: 'rspau_hardjolukito', label: 'RSPAU Hardjolukito' },
-  { value: 'rs_pku_muhammadiyah_yogyakarta', label: 'RS PKU Muhammadiyah Yogyakarta' },
+  { value: 'rs_at_turots_al_islamy', label: 'RS At Turots Al Islamy' },
+  { value: 'rs_bethesda_lempuyangwangi', label: 'RS Bethesda Lempuyangwangi' },
   { value: 'rs_bethesda_yogyakarta', label: 'RS Bethesda Yogyakarta' },
-  { value: 'rst_dr_soetarto_yogyakarta', label: 'RST Dr Soetarto Yogyakarta' },
+  { value: 'rs_bhayangkara_polda_diy', label: 'RS Bhayangkara Polda DIY' },
+  { value: 'rs_mata_dr_yap', label: 'RS Mata Dr YAP' },
+  { value: 'rs_mitra_paramedika', label: 'RS Mitra Paramedika' },
+  { value: 'rs_nur_hidayah', label: 'RS Nur Hidayah' },
   { value: 'rs_panti_rapih', label: 'RS Panti Rapih' },
   { value: 'rs_pku_muhammadiyah_bantul', label: 'RS PKU Muhammadiyah Bantul' },
-  { value: 'rs_queen_latifa', label: 'RS Queen Latifa' },
   { value: 'rs_pku_muhammadiyah_gamping', label: 'RS PKU Muhammadiyah Gamping' },
+  { value: 'rs_pku_muhammadiyah_wonosari', label: 'RS PKU Muhammadiyah Wonosari' },
+  { value: 'rs_pku_muhammadiyah_yogyakarta', label: 'RS PKU Muhammadiyah Yogyakarta' },
+  { value: 'rs_queen_latifa', label: 'RS Queen Latifa' },
+  { value: 'rs_u_rajawali_citra', label: 'RSU Rajawali Citra' },
   { value: 'rsud_kota_yogyakarta', label: 'RSUD Kota Yogyakarta' },
-  { value: 'rsud_panembahan_senopati', label: 'RSUD Panembahan Senopati' },
-  { value: 'rsu_rajawali_citra', label: 'RSU Rajawali Citra' },
-  { value: 'rs_nur_hidayah', label: 'RS Nur Hidayah' },
-  { value: 'rsud_sleman', label: 'RSUD Sleman' },
-  { value: 'rs_mata_dr_yap', label: 'RS Mata Dr YAP' },
-  { value: 'rsud_wates', label: 'RSUD Wates' },
-  { value: 'rsud_prambanan', label: 'RSUD Prambanan' },
-  { value: 'rsud_wonosari', label: 'RSUD Wonosari' },
   { value: 'rsud_nyi_ageng_serang', label: 'RSUD Nyi Ageng Serang' },
-  { value: 'rs_bhayangkara_polda_diy', label: 'RS Bhayangkara Polda DIY' },
-  { value: 'rs_bethesda_lempuyangwangi', label: 'RS Bethesda Lempuyangwangi' },
-  { value: 'rs_mitra_paramedika', label: 'RS Mitra Paramedika' },
-  { value: 'rs_at_turots_al_islamy', label: 'RS At Turots Al Islamy' },
-  { value: 'rumah_sakit_pku_muhammadiyah_wonosari', label: 'Rumah Sakit PKU Muhammadiyah Wonosari' }
+  { value: 'rsud_panembahan_senopati', label: 'RSUD Panembahan Senopati' },
+  { value: 'rsud_prambanan', label: 'RSUD Prambanan' },
+  { value: 'rsud_sleman', label: 'RSUD Sleman' },
+  { value: 'rsud_wates', label: 'RSUD Wates' },
+  { value: 'rsud_wonosari', label: 'RSUD Wonosari' },
+  { value: 'rspau_hardjolukito', label: 'RSPAU Hardjolukito' },
+  { value: 'rsu_rajawali_citra', label: 'RSU Rajawali Citra' },
+  { value: 'rsup_dr_sardjito_yogyakarta', label: 'RSUP Dr Sardjito Yogyakarta' },
+  { value: 'rst_dr_soetarto_yogyakarta', label: 'RST Dr Soetarto Yogyakarta' },
 ];
+
 
 const reviews = ref([]);
 const selectedLocation = ref('all');
@@ -281,7 +283,7 @@ const countNegative = ref(0);
 
 const page = ref(1)
 const perPage = 10
-const totalPages = computed(() => Math.ceil(count.value / perPage))
+const totalPages = ref(0);
 
 const pageNumbers = computed(() => {
   const total = totalPages.value
@@ -310,17 +312,20 @@ const pageNumbers = computed(() => {
   return range
 })
 
+const baseUrl = import.meta.env.VITE_API_URL;
+
 const fetchReviews = () => {
   const location = selectedLocation.value;
   const rating = selectedRating.value;
   const type = selectedType.value;
   const currentPage = page.value;
-  fetch(`http://localhost:5000/api/data-gmaps?location=${location}&rating=${rating}&type=${type}&page=${currentPage}&per_page=${perPage}`)
+  fetch(`${baseUrl}/api/data-gmaps?location=${location}&rating=${rating}&type=${type}&page=${currentPage}&per_page=${perPage}`)
 
     .then(res => res.json())
     .then(data => {
       reviews.value = data.reviews;
       count.value = data.count;
+      totalPages.value = data.pagination.total_pages
       countPositive.value = data.countPositive;
       countNegative.value = data.countNegative;
       console.log(data.reviews);

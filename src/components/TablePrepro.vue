@@ -63,8 +63,8 @@
                             <td v-if="path === 'normalization'" class="border border-gray-300 dark:text-white p-2 ">{{ review.slang_text }}</td>
                             <td v-if="path === 'tokenization'" class="border border-gray-300 dark:text-white p-2 ">{{ review.token_text }}</td>
                             <td v-if="path === 'stemming'" class="border border-gray-300 dark:text-white p-2 ">{{ review.stemmed_text_done }}</td>
-                            <td class="border border-gray-300 dark:text-white p-2 ">{{ review.rating }}</td>
-                            <td class="border border-gray-300 dark:text-white p-2 ">{{ review.type_rs }}</td>
+                            <td class="border border-gray-300 dark:text-white p-2 text-center">{{ review.rating }}</td>
+                            <td class="border border-gray-300 dark:text-white p-2 text-center">{{ review.type_rs }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -130,30 +130,31 @@ import { ref, reactive, onMounted, watch, computed } from 'vue';
 const props = defineProps({ path: String });
 
 const hospitals = [
-    { value: 'rsup_dr_sardjito_yogyakarta', label: 'RSUP Dr Sardjito Yogyakarta' },
-    { value: 'rspau_hardjolukito', label: 'RSPAU Hardjolukito' },
-    { value: 'rs_pku_muhammadiyah_yogyakarta', label: 'RS PKU Muhammadiyah Yogyakarta' },
-    { value: 'rs_bethesda_yogyakarta', label: 'RS Bethesda Yogyakarta' },
-    { value: 'rst_dr_soetarto_yogyakarta', label: 'RST Dr Soetarto Yogyakarta' },
-    { value: 'rs_panti_rapih', label: 'RS Panti Rapih' },
-    { value: 'rs_pku_muhammadiyah_bantul', label: 'RS PKU Muhammadiyah Bantul' },
-    { value: 'rs_queen_latifa', label: 'RS Queen Latifa' },
-    { value: 'rs_pku_muhammadiyah_gamping', label: 'RS PKU Muhammadiyah Gamping' },
-    { value: 'rsud_kota_yogyakarta', label: 'RSUD Kota Yogyakarta' },
-    { value: 'rsud_panembahan_senopati', label: 'RSUD Panembahan Senopati' },
-    { value: 'rsu_rajawali_citra', label: 'RSU Rajawali Citra' },
-    { value: 'rs_nur_hidayah', label: 'RS Nur Hidayah' },
-    { value: 'rsud_sleman', label: 'RSUD Sleman' },
-    { value: 'rs_mata_dr_yap', label: 'RS Mata Dr YAP' },
-    { value: 'rsud_wates', label: 'RSUD Wates' },
-    { value: 'rsud_prambanan', label: 'RSUD Prambanan' },
-    { value: 'rsud_wonosari', label: 'RSUD Wonosari' },
-    { value: 'rsud_nyi_ageng_serang', label: 'RSUD Nyi Ageng Serang' },
-    { value: 'rs_bhayangkara_polda_diy', label: 'RS Bhayangkara Polda DIY' },
-    { value: 'rs_bethesda_lempuyangwangi', label: 'RS Bethesda Lempuyangwangi' },
-    { value: 'rs_mitra_paramedika', label: 'RS Mitra Paramedika' },
-    { value: 'rs_at_turots_al_islamy', label: 'RS At Turots Al Islamy' },
-    { value: 'rumah_sakit_pku_muhammadiyah_wonosari', label: 'Rumah Sakit PKU Muhammadiyah Wonosari' }
+  { value: 'rs_at_turots_al_islamy', label: 'RS At Turots Al Islamy' },
+  { value: 'rs_bethesda_lempuyangwangi', label: 'RS Bethesda Lempuyangwangi' },
+  { value: 'rs_bethesda_yogyakarta', label: 'RS Bethesda Yogyakarta' },
+  { value: 'rs_bhayangkara_polda_diy', label: 'RS Bhayangkara Polda DIY' },
+  { value: 'rs_mata_dr_yap', label: 'RS Mata Dr YAP' },
+  { value: 'rs_mitra_paramedika', label: 'RS Mitra Paramedika' },
+  { value: 'rs_nur_hidayah', label: 'RS Nur Hidayah' },
+  { value: 'rs_panti_rapih', label: 'RS Panti Rapih' },
+  { value: 'rs_pku_muhammadiyah_bantul', label: 'RS PKU Muhammadiyah Bantul' },
+  { value: 'rs_pku_muhammadiyah_gamping', label: 'RS PKU Muhammadiyah Gamping' },
+  { value: 'rs_pku_muhammadiyah_wonosari', label: 'RS PKU Muhammadiyah Wonosari' },
+  { value: 'rs_pku_muhammadiyah_yogyakarta', label: 'RS PKU Muhammadiyah Yogyakarta' },
+  { value: 'rs_queen_latifa', label: 'RS Queen Latifa' },
+  { value: 'rs_u_rajawali_citra', label: 'RSU Rajawali Citra' },
+  { value: 'rsud_kota_yogyakarta', label: 'RSUD Kota Yogyakarta' },
+  { value: 'rsud_nyi_ageng_serang', label: 'RSUD Nyi Ageng Serang' },
+  { value: 'rsud_panembahan_senopati', label: 'RSUD Panembahan Senopati' },
+  { value: 'rsud_prambanan', label: 'RSUD Prambanan' },
+  { value: 'rsud_sleman', label: 'RSUD Sleman' },
+  { value: 'rsud_wates', label: 'RSUD Wates' },
+  { value: 'rsud_wonosari', label: 'RSUD Wonosari' },
+  { value: 'rspau_hardjolukito', label: 'RSPAU Hardjolukito' },
+  { value: 'rsu_rajawali_citra', label: 'RSU Rajawali Citra' },
+  { value: 'rsup_dr_sardjito_yogyakarta', label: 'RSUP Dr Sardjito Yogyakarta' },
+  { value: 'rst_dr_soetarto_yogyakarta', label: 'RST Dr Soetarto Yogyakarta' },
 ];
 
 const isLoading = ref(false)
@@ -167,10 +168,9 @@ const lastFilter = reactive({
     type: selectedType.value
 });
 const count = ref(0);
-
 const page = ref(1)
 const perPage = 10
-const totalPages = computed(() => Math.ceil(count.value / perPage))
+const totalPages = ref(0);
 
 const pageNumbers = computed(() => {
     const total = totalPages.value
@@ -199,6 +199,9 @@ const pageNumbers = computed(() => {
     return range
 })
 
+
+const baseUrl = import.meta.env.VITE_API_URL;
+
 const fetchReviews = async () => {
   isLoading.value = true
   try {
@@ -207,11 +210,12 @@ const fetchReviews = async () => {
     const type = selectedType.value
     const currentPage = page.value
 
-    const res = await fetch(`http://localhost:5000/api/data-gmaps/preprocessing/${props.path}?location=${location}&rating=${rating}&type=${type}&page=${currentPage}&per_page=${perPage}`)
+    const res = await fetch(`${baseUrl}/api/data-gmaps/preprocessing/${props.path}?location=${location}&rating=${rating}&type=${type}&page=${currentPage}&per_page=${perPage}`)
     const data = await res.json()
 
     reviews.value = data.reviews
     count.value = data.count
+    totalPages.value = data.pagination.total_pages
   } catch (err) {
     console.error("Gagal mengambil data:", err)
   } finally {
