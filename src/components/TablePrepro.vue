@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="w-full overflow-x-auto">
         <div class="flex flex-wrap gap-3 items-center mt-4">
             <h4 class=" text-gray-800 dark:text-gray-300">Filter By</h4>
             <select v-model="selectedLocation" @change="fetchReviews"

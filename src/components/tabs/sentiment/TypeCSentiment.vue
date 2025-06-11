@@ -1,83 +1,32 @@
 <template>
     <div>
-        <div class="grid gap-6 mb-8 lg:grid-cols-2">
-            <div>
-                <div
-                    class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 border border-gray-200 dark:border-none">
-                    <div class="md:flex justify-evenly">
-                        <div class=" text-center">
-                            <h2 class="font-semibold mb-2 text-gray-800 dark:text-gray-300">Sentiment Real</h2>
-                            <ChartSentimentRealTypeC />
-                            <div class="md:hidden mt-6">
-                                <h1 class="text-xl lg:text-2xl text-gray-800 dark:text-gray-300">99,6%</h1>
-                                <h2 class="text-base  text-gray-800 dark:text-gray-300">Accuracy Train</h2>
-                            </div>
-                        </div>
-                        <div class=" text-center">
-                            <h2 class="font-semibold mb-2 text-gray-800 dark:text-gray-300">Sentiment Prediction</h2>
-                            <ChartSentimentPredictTypeC />
-                            <div class="md:hidden mt-6">
-                                <h1 class="text-xl lg:text-2xl text-gray-800 dark:text-gray-300">94,5%</h1>
-                                <h2 class="text-base text-gray-800 dark:text-gray-300">Accuracy Train</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="hidden md:flex justify-around mt-3 gap-3 text-center">
-                    <div
-                        class="w-full p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 border border-gray-200 dark:border-none">
-                        <h1 class="text-xl lg:text-2xl font-semibold text-gray-800 dark:text-gray-300">99,6%</h1>
-                        <h2 class="text-base  text-gray-800 dark:text-gray-300">Accuracy Train</h2>
-                    </div>
-                    <div
-                        class="w-full p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 border border-gray-200 dark:border-none">
-                        <h1 class="text-xl lg:text-2xl font-semibold text-gray-800 dark:text-gray-300">94,5%</h1>
-                        <h2 class="text-base text-gray-800 dark:text-gray-300">Accuracy Train</h2>
-                    </div>
-                </div>
+        <div class="grid gap-6 mb-4 md:grid-cols-2">
+            <div class="p-4 bg-white rounded-lg dark:bg-gray-800 shadow-md border border-gray-200 dark:border-none">
+                <h2 class="font-semibold lg:text-lg mb-4 text-gray-800 dark:text-gray-300 text-center">Sentiment Real</h2>
+                <ChartSentimentRealTypeC />
             </div>
 
-            <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-                <div>
-                    <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-                        Summary Insight
-                    </h4>
-                    <fwb-accordion>
-                        <fwb-accordion-panel class="w-full">
-                            <fwb-accordion-header>Positive Sentiment Highlights</fwb-accordion-header>
-                            <fwb-accordion-content>
-                                <p class="mb-2 text-gray-500 dark:text-gray-400">
-                                    Positive sentiment rs type c
-                                </p>
-                                <p class="text-gray-500 dark:text-gray-400">
-                                    Check out this guide to learn how to <a href="/docs/getting-started/introduction/"
-                                        class="text-blue-600 hover:underline dark:text-blue-500">get started</a> and
-                                    start developing websites even faster with components on top of Tailwind CSS.
-                                </p>
-                            </fwb-accordion-content>
-                        </fwb-accordion-panel>
+            <div class="p-4 bg-white rounded-lg dark:bg-gray-800 shadow-md border border-gray-200 dark:border-none">
+                <h2 class="font-semibold lg:text-lg mb-4 text-gray-800 dark:text-gray-300 text-center">Sentiment Prediction</h2>
+                <ChartSentimentPredictTypeC />
+            </div>
+        </div>
 
-                        <fwb-accordion-panel>
-                            <fwb-accordion-header>Negative Sentiment Highlights</fwb-accordion-header>
-                            <fwb-accordion-content>
-                                <p class="mb-2 text-gray-500 dark:text-gray-400">
-                                    Flowbite is first conceptualized and designed using the Figma software so everything
-                                    you see in the library has a design equivalent in our Figma file.
-                                </p>
-                                <p class="text-gray-500 dark:text-gray-400">
-                                    Check out the <a href="https://flowbite.com/figma/"
-                                        class="text-blue-600 hover:underline dark:text-blue-500">Figma design system</a>
-                                    based on the utility classes from Tailwind CSS and components from Flowbite.
-                                </p>
-                            </fwb-accordion-content>
-                        </fwb-accordion-panel>
-                    </fwb-accordion>
-                </div>
+        <div class="grid gap-3 md:gap-6 mb-8 md:grid-cols-2">
+            <div
+                class="w-full text-center p-4 bg-white rounded-lg shadow-md dark:bg-gray-800 border border-gray-200 dark:border-none">
+                <h1 class="text-xl lg:text-2xl font-semibold text-gray-800 dark:text-gray-300">99,6%</h1>
+                <h2 class="text-base  text-gray-800 dark:text-gray-300">Accuracy Train</h2>
+            </div>
+            <div
+                class="w-full text-center p-4 bg-white rounded-lg shadow-md dark:bg-gray-800 border border-gray-200 dark:border-none">
+                <h1 class="text-xl lg:text-2xl font-semibold text-gray-800 dark:text-gray-300">94,5%</h1>
+                <h2 class="text-base text-gray-800 dark:text-gray-300">Accuracy Tes</h2>
             </div>
         </div>
 
         <div class="grid gap-6 mb-8 md:grid-cols-2">
-            <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+            <div class="min-w-0 p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
                 <h4 class="mb-6 font-semibold text-gray-800 dark:text-gray-300">
                     Wordcloud Positive Sentiment
                 </h4>
@@ -88,7 +37,7 @@
                     </span>
                 </div>
             </div>
-            <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+            <div class="min-w-0 p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
                 <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
                     Negative Sentiment Highlights
                 </h4>

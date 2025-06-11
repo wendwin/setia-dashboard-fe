@@ -1,5 +1,6 @@
 <template>
-    <div class="container px-6 mx-auto grid h-full overflow-y-auto" ref="scrollContainer">
+    <!-- <div class="container px-6 mx-auto grid h-full overflow-y-auto" ref="scrollContainer"> -->
+    <div class="container px-6 mx-auto grid " ref="scrollContainer">
         <div
             class="p-4 my-5 bg-white dark:bg-[#374151] rounded-lg shadow-md focus:outline-none border-1 border-gray-100">
             <div class="text-gray-600 py-1 px-3">
@@ -60,7 +61,7 @@
 
         <TabSentiment />
 
-        <div class="">
+        <div class="w-full overflow-x-auto">
             <div class="flex flex-wrap gap-3 items-center mt-4">
                 <h4 class=" text-gray-800 dark:text-gray-300">Filter By</h4>
                 <select v-model="selectedLocation" @change="fetchSentimentData"
@@ -173,12 +174,13 @@
             <p v-else class="text-center mt-5 dark:text-white font-semibold">Data Not Found...</p>
 
         </div>
-        <div class="flex justify-end items-center p-4 ">
+
+        <!-- <div class="flex justify-end items-center p-4 ">
             <div @click="scrollToTop"
                 class="p-5 bg-blue-500 rounded-full shadow-md focus:outline-none w-5 h-5 flex justify-center items-center cursor-pointer">
                 <font-awesome-icon :icon="['fas', 'arrow-up']" class="text-white" />
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 
