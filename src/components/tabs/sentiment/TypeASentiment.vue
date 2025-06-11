@@ -173,9 +173,11 @@ function getTagStyle(frequency, maxFrequency) {
     };
 }
 
+const baseUrl = import.meta.env.VITE_API_URL;
+
 async function fetchSentimentWordCloud() {
     try {
-        const res = await fetch(`http://localhost:5000/api/sentiment-analysis/word-cloud/type-a`);
+        const res = await fetch(`${baseUrl}/api/sentiment-analysis/word-cloud/type-a`);
         const data = await res.json();
         wordFreqNeg.value = data.word_freq_neg;
         wordFreqPos.value = data.word_freq_pos;
