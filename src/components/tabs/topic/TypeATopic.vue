@@ -7,32 +7,15 @@
                         Positive Topic Highlights
                     </h4>
                     <fwb-accordion>
-                        <fwb-accordion-panel>
-                            <fwb-accordion-header>Topic 1</fwb-accordion-header>
+                        <fwb-accordion-panel v-for="(topic, index) in topicsPos" :key="index">
+                            <fwb-accordion-header>{{ topic.topic }}</fwb-accordion-header>
                             <fwb-accordion-content>
-                                <p class="mb-2 text-gray-500 dark:text-gray-400">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea
-                                    praesentium quis architecto. Consequuntur saepe enim corporis
-                                    dignissimos ratione ex neque.
-                                </p>
-                            </fwb-accordion-content>
-                        </fwb-accordion-panel>
-                        <fwb-accordion-panel>
-                            <fwb-accordion-header>Topic 2</fwb-accordion-header>
-                            <fwb-accordion-content>
-                                <p class="mb-2 text-gray-500 dark:text-gray-400">
-                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                                    Placeat, sapiente delectus sint ratione doloremque debitis.
-                                </p>
-                            </fwb-accordion-content>
-                        </fwb-accordion-panel>
-                        <fwb-accordion-panel>
-                            <fwb-accordion-header>Topic 3</fwb-accordion-header>
-                            <fwb-accordion-content>
-                                <p class="mb-2 text-gray-500 dark:text-gray-400">
-                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                    Placeat temporibus atque totam rem consequuntur aut ratione!
-                                </p>
+                                <div v-for="(s, i) in topic.suggestions" :key="s.id">
+                                    <h4 class="text-gray-500 dark:text-gray-400 mb-2">Message {{ i + 1 }}</h4>
+                                    <p class="mb-2 text-gray-500 dark:text-gray-400">{{ s.content }}</p>
+                                    <hr v-if="i < topic.suggestions.length - 1"
+                                        class="my-4 border-t border-gray-300 dark:border-gray-700" />
+                                </div>
                             </fwb-accordion-content>
                         </fwb-accordion-panel>
                     </fwb-accordion>
@@ -45,38 +28,17 @@
                         Negative Topic Highlights
                     </h4>
                     <fwb-accordion>
-                        <fwb-accordion>
-                            <fwb-accordion-panel>
-                                <fwb-accordion-header>Topic 1</fwb-accordion-header>
-                                <fwb-accordion-content>
-                                    <p class="mb-2 text-gray-500 dark:text-gray-400">
-                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                        Sunt eligendi temporibus quo neque quisquam consequuntur
-                                        quis eius, hic molestiae.
-                                    </p>
-                                </fwb-accordion-content>
-                            </fwb-accordion-panel>
-                            <fwb-accordion-panel>
-                                <fwb-accordion-header>Topic 2</fwb-accordion-header>
-                                <fwb-accordion-content>
-                                    <p class="mb-2 text-gray-500 dark:text-gray-400">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        Magni expedita exercitationem deserunt ipsam distinctio est,
-                                        eligendi non ducimus?
-                                    </p>
-                                </fwb-accordion-content>
-                            </fwb-accordion-panel>
-                            <fwb-accordion-panel>
-                                <fwb-accordion-header>Topic 3</fwb-accordion-header>
-                                <fwb-accordion-content>
-                                    <p class="mb-2 text-gray-500 dark:text-gray-400">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        Quidem deleniti molestiae doloribus nostrum iusto.
-                                        Recusandae maxime cupiditate dolore.
-                                    </p>
-                                </fwb-accordion-content>
-                            </fwb-accordion-panel>
-                        </fwb-accordion>
+                        <fwb-accordion-panel v-for="(topic, index) in topicsNeg" :key="index">
+                            <fwb-accordion-header>{{ topic.topic }}</fwb-accordion-header>
+                            <fwb-accordion-content>
+                                <div v-for="(s, i) in topic.suggestions" :key="s.id">
+                                    <h4 class="text-gray-500 dark:text-gray-400 mb-2">Message {{ i + 1 }}</h4>
+                                    <p class="mb-2 text-gray-500 dark:text-gray-400">{{ s.content }}</p>
+                                    <hr v-if="i < topic.suggestions.length - 1"
+                                        class="my-4 border-t border-gray-300 dark:border-gray-700" />
+                                </div>
+                            </fwb-accordion-content>
+                        </fwb-accordion-panel>
                     </fwb-accordion>
                 </div>
             </div>
@@ -116,8 +78,25 @@ import {
     FwbAccordionHeader,
     FwbAccordionContent,
 } from "flowbite-vue";
+import { ref, onMounted, computed } from 'vue'
 
+const topicsPos = ref([])
+const topicsNeg = ref([])
 
+const baseUrl = import.meta.env.VITE_API_URL;
+
+onMounted(async () => {
+    try {
+        const res = await fetch(`${baseUrl}/api/topics?type=A`)
+        const data = await res.json()
+        topicsPos.value = data.positive
+        topicsNeg.value = data.negative
+        console.log(data)
+        console.log(data.positive)
+    } catch (err) {
+        console.error('Gagal mengambil data:', err)
+    }
+})
 </script>
 
 <style lang="scss" scoped></style>
