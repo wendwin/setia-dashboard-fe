@@ -114,8 +114,8 @@
             </div>
             <div
                 class="min-w-0 p-4  bg-white rounded-lg shadow-md dark:bg-gray-800 border border-gray-200 dark:border-none">
-                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-                    Negative Sentiment Highlights
+                <h4 class="mb-6 font-semibold text-gray-800 dark:text-gray-300">
+                    Wordcloud Negative Sentiment
                 </h4>
                 <div class="flex flex-wrap justify-center gap-3">
                     <span v-for="(item, index) in wordFreqNeg" :key="index" class="tag"
