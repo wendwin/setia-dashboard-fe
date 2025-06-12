@@ -16,6 +16,9 @@
                                     <hr v-if="i < topic.suggestions.length - 1"
                                         class="my-4 border-t border-gray-300 dark:border-gray-700" />
                                 </div>
+                                 <div class="flex justify-end">
+                                    <ModalEdit @updated="fetchTopics" :suggestions="topic.suggestions" :topic="topic.topic" :topicId="topic.id" :typeTopic="typeTopic"/>
+                                </div>
                             </fwb-accordion-content>
                         </fwb-accordion-panel>
                     </fwb-accordion>
@@ -36,6 +39,9 @@
                                     <p class="mb-2 text-gray-500 dark:text-gray-400">{{ s.content }}</p>
                                     <hr v-if="i < topic.suggestions.length - 1"
                                         class="my-4 border-t border-gray-300 dark:border-gray-700" />
+                                </div>
+                                <div class="flex justify-end">
+                                    <ModalEdit @updated="fetchTopics" :suggestions="topic.suggestions" :topic="topic.topic" :topicId="topic.id" :typeTopic="typeTopic"/>
                                 </div>
                             </fwb-accordion-content>
                         </fwb-accordion-panel>
@@ -78,25 +84,30 @@ import {
     FwbAccordionHeader,
     FwbAccordionContent,
 } from "flowbite-vue";
-import { ref, onMounted, computed } from 'vue'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { ref, onMounted } from 'vue'
+import ModalEdit from "../../ModalEdit.vue"    
 
 const topicsPos = ref([])
 const topicsNeg = ref([])
+const typeTopic = ref('')
 
 const baseUrl = import.meta.env.VITE_API_URL;
 
-onMounted(async () => {
-    try {
-        const res = await fetch(`${baseUrl}/api/topics?type=A`)
-        const data = await res.json()
-        topicsPos.value = data.positive
-        topicsNeg.value = data.negative
-        console.log(data)
-        console.log(data.positive)
-    } catch (err) {
-        console.error('Gagal mengambil data:', err)
-    }
-})
+const fetchTopics = async () => {
+  try {
+    const res = await fetch(`${baseUrl}/api/topics?type=A`)
+    const data = await res.json()
+    topicsPos.value = data.positive
+    topicsNeg.value = data.negative
+    typeTopic.value = data.typeTopic
+  } catch (err) {
+    console.error('Gagal mengambil data:', err)
+  }
+}
+
+onMounted(fetchTopics)
+
 </script>
 
 <style lang="scss" scoped></style>
