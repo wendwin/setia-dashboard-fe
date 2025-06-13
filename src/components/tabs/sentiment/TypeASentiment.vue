@@ -1,9 +1,19 @@
 <template>
     <div>
-        <div class="grid gap-6 mb-8 lg:grid-cols-2">
-            <div>
+        <div class="grid gap-6 mb-4 md:grid-cols-2">
+            <div class="p-4 bg-white rounded-lg dark:bg-gray-800 shadow-md border border-gray-200 dark:border-none">
+                <h2 class="font-semibold lg:text-lg mb-4 text-gray-800 dark:text-gray-300 text-center">Sentiment Real</h2>
+                <ChartSentimentRealTypeA />
+            </div>
+
+            <div class="p-4 bg-white rounded-lg dark:bg-gray-800 shadow-md border border-gray-200 dark:border-none">
+                <h2 class="font-semibold lg:text-lg mb-4 text-gray-800 dark:text-gray-300 text-center">Sentiment Prediction</h2>
+                <ChartSentimentPredictTypeA />
+            </div>
+
+            <!-- <div>
                 <div
-                    class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 border border-gray-200 dark:border-none">
+                    class="min-w-0 p-4 bg-white rounded-lg dark:bg-gray-800 shadow-md border border-gray-200 dark:border-none">
                     <div class="md:flex justify-evenly">
                         <div class=" text-center">
                             <h2 class="font-semibold mb-2 text-gray-800 dark:text-gray-300">Sentiment Real</h2>
@@ -25,12 +35,12 @@
                 </div>
                 <div class="hidden md:flex justify-around mt-3 gap-3 text-center">
                     <div
-                        class="w-full p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 border border-gray-200 dark:border-none">
+                        class="w-full p-4 bg-white rounded-lg shadow-md dark:bg-gray-800 border border-gray-200 dark:border-none">
                         <h1 class="text-xl lg:text-2xl font-semibold text-gray-800 dark:text-gray-300">99,6%</h1>
                         <h2 class="text-base  text-gray-800 dark:text-gray-300">Accuracy Train</h2>
                     </div>
                     <div
-                        class="w-full p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 border border-gray-200 dark:border-none">
+                        class="w-full p-4 bg-white rounded-lg shadow-md dark:bg-gray-800 border border-gray-200 dark:border-none">
                         <h1 class="text-xl lg:text-2xl font-semibold text-gray-800 dark:text-gray-300">94,5%</h1>
                         <h2 class="text-base text-gray-800 dark:text-gray-300">Accuracy Train</h2>
                     </div>
@@ -73,11 +83,25 @@
                         </fwb-accordion-panel>
                     </fwb-accordion>
                 </div>
+            </div> -->
+        </div>
+
+        <div class="grid gap-3 md:gap-6 mb-8 md:grid-cols-2">
+            <div
+                class="w-full text-center p-4 bg-white rounded-lg shadow-md dark:bg-gray-800 border border-gray-200 dark:border-none">
+                <h1 class="text-xl lg:text-2xl font-semibold text-gray-800 dark:text-gray-300">99,6%</h1>
+                <h2 class="text-base  text-gray-800 dark:text-gray-300">Accuracy Train</h2>
+            </div>
+            <div
+                class="w-full text-center p-4 bg-white rounded-lg shadow-md dark:bg-gray-800 border border-gray-200 dark:border-none">
+                <h1 class="text-xl lg:text-2xl font-semibold text-gray-800 dark:text-gray-300">94,5%</h1>
+                <h2 class="text-base text-gray-800 dark:text-gray-300">Accuracy Tes</h2>
             </div>
         </div>
 
-        <div class="grid gap-6 mb-8 md:grid-cols-2">
-            <div class="min-w-0 p-4  bg-white rounded-lg shadow-xs dark:bg-gray-800 border border-gray-200 dark:border-none">
+        <div class="grid gap-6 mb-8 lg:grid-cols-2">
+            <div
+                class="min-w-0 p-4  bg-white rounded-lg shadow-md dark:bg-gray-800 border border-gray-200 dark:border-none">
                 <h4 class="mb-6 font-semibold text-gray-800 dark:text-gray-300">
                     Wordcloud Positive Sentiment
                 </h4>
@@ -88,9 +112,10 @@
                     </span>
                 </div>
             </div>
-            <div class="min-w-0 p-4  bg-white rounded-lg shadow-xs dark:bg-gray-800 border border-gray-200 dark:border-none">
-                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-                    Negative Sentiment Highlights
+            <div
+                class="min-w-0 p-4  bg-white rounded-lg shadow-md dark:bg-gray-800 border border-gray-200 dark:border-none">
+                <h4 class="mb-6 font-semibold text-gray-800 dark:text-gray-300">
+                    Wordcloud Negative Sentiment
                 </h4>
                 <div class="flex flex-wrap justify-center gap-3">
                     <span v-for="(item, index) in wordFreqNeg" :key="index" class="tag"
@@ -103,7 +128,9 @@
 
         <div class="w-full bg-blue-600 text-center rounded-lg p-5">
             <h1 class="text-xl lg:text-2xl font-semibold text-white mb-4">Data Sentimen Explorer</h1>
-            <p class="text-base lg:text-lg text-white">Eksplorasi Data Sentimen RSU Queen Latifa Yogyakarta menggunakan Algoritma Support Vector Machine untuk memahami opini dan persepsi pasien atau pengguna layanan di RSU Queen Latifa Yogyakarta melalui ulasan yang diberikan.</p>
+            <p class="text-base lg:text-lg text-white">Eksplorasi Data Sentimen RSU Queen Latifa Yogyakarta menggunakan
+                Algoritma Support Vector Machine untuk memahami opini dan persepsi pasien atau pengguna layanan di RSU
+                Queen Latifa Yogyakarta melalui ulasan yang diberikan.</p>
         </div>
     </div>
 </template>
@@ -130,25 +157,27 @@ const maxFreqPos = computed(() =>
 );
 
 function getTagStyle(frequency, maxFrequency) {
-  const minSize = 0.9;  
-  const maxSize = 2.0;  
-  const scale = frequency / maxFrequency;
-  const size = minSize + scale * (maxSize - minSize);
+    const minSize = 0.9;
+    const maxSize = 2.0;
+    const scale = frequency / maxFrequency;
+    const size = minSize + scale * (maxSize - minSize);
 
-  const hue = Math.floor(240 - scale * 240);
-  const color = `hsl(${hue}, 70%, 50%)`;
+    const hue = Math.floor(240 - scale * 240);
+    const color = `hsl(${hue}, 70%, 50%)`;
 
-  return {
-    fontSize: `${size}em`,
-    color,
-    fontWeight: '600',
-    lineHeight: 1,
-  };
+    return {
+        fontSize: `${size}em`,
+        color,
+        fontWeight: '600',
+        lineHeight: 1,
+    };
 }
+
+const baseUrl = import.meta.env.VITE_API_URL;
 
 async function fetchSentimentWordCloud() {
     try {
-        const res = await fetch(`http://localhost:5000/api/sentiment-analysis/word-cloud/type-a`);
+        const res = await fetch(`${baseUrl}/api/sentiment-analysis/word-cloud/type-a`);
         const data = await res.json();
         wordFreqNeg.value = data.word_freq_neg;
         wordFreqPos.value = data.word_freq_pos;
@@ -170,15 +199,14 @@ onMounted(() => {
 }
 
 .tag {
-  padding: 0.1em 0.3em;
-  white-space: nowrap;
-  transition: transform 0.2s ease;
-  user-select: none;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    padding: 0.1em 0.3em;
+    white-space: nowrap;
+    transition: transform 0.2s ease;
+    user-select: none;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .tag:hover {
-  transform: scale(1.1);
+    transform: scale(1.1);
 }
-
 </style>

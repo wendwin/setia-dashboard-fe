@@ -3,7 +3,7 @@
         <main class="h-full overflow-y-auto">
             <div class="container px-6 mx-auto grid">
                 <div
-                    class="p-4 my-5 font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple">
+                    class="p-4 my-5 font-semibold text-purple-100 bg-blue-500 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple">
                     <div>
                         <div>
                             <h1 class="text-lg lg:text-[28px] mb-2"> {{ formatKata(path) }} Preprocessing</h1>

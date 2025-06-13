@@ -1,5 +1,6 @@
 <template>
-    <div class="container px-6 mx-auto grid h-full overflow-y-auto" ref="scrollContainer">
+    <!-- <div class="container px-6 mx-auto grid h-full overflow-y-auto" ref="scrollContainer"> -->
+    <div class="container px-6 mx-auto grid " ref="scrollContainer">
         <div
             class="p-4 my-5 bg-white dark:bg-[#374151] rounded-lg shadow-md focus:outline-none border-1 border-gray-100">
             <div class="text-gray-600 py-1 px-3">
@@ -60,7 +61,7 @@
 
         <TabSentiment />
 
-        <div class="">
+        <div class="w-full overflow-x-auto">
             <div class="flex flex-wrap gap-3 items-center mt-4">
                 <h4 class=" text-gray-800 dark:text-gray-300">Filter By</h4>
                 <select v-model="selectedLocation" @change="fetchSentimentData"
@@ -99,9 +100,9 @@
                             <th class="border border-gray-300 dark:text-white p-2">No</th>
                             <th class="border border-gray-300 dark:text-white p-2">Review</th>
                             <th class="border border-gray-300 dark:text-white p-2">Rating</th>
+                            <th class="border border-gray-300 dark:text-white p-2">Type</th>
                             <th class="border border-gray-300 dark:text-white p-2">Sentiment</th>
                             <th class="border border-gray-300 dark:text-white p-2">Prediction</th>
-                            <th class="border border-gray-300 dark:text-white p-2">Type</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -110,12 +111,12 @@
                                 perPage + index + 1 }}</td>
                             <td class="border border-gray-300 dark:text-white p-2 ">{{
                                 sentiment.stemmed_text_done }}</td>
-                            <td class="border border-gray-300 dark:text-white p-2">{{ sentiment.rating }}</td>
-                            <td class="border border-gray-300 dark:text-white p-2">{{ sentiment.label }}</td>
+                            <td class="border border-gray-300 dark:text-white p-2 text-center">{{ sentiment.rating }}</td>
+                             <td class="border border-gray-300 dark:text-white p-2 text-center">{{
+                                sentiment.type_rs }}</td>
+                            <td class="border border-gray-300 dark:text-white p-2 text-center">{{ sentiment.label }}</td>
                             <td class="border border-gray-300 dark:text-white p-2 text-center">{{
                                 sentiment.predicted_sentiment }}</td>
-                            <td class="border border-gray-300 dark:text-white p-2 text-center">{{
-                                sentiment.type_rs }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -173,12 +174,13 @@
             <p v-else class="text-center mt-5 dark:text-white font-semibold">Data Not Found...</p>
 
         </div>
-        <div class="flex justify-end items-center p-4 ">
+
+        <!-- <div class="flex justify-end items-center p-4 ">
             <div @click="scrollToTop"
                 class="p-5 bg-blue-500 rounded-full shadow-md focus:outline-none w-5 h-5 flex justify-center items-center cursor-pointer">
                 <font-awesome-icon :icon="['fas', 'arrow-up']" class="text-white" />
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -188,30 +190,31 @@ import TabSentiment from '../components/TabSentiment.vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 const hospitals = [
-    { value: 'rsup_dr_sardjito_yogyakarta', label: 'RSUP Dr Sardjito Yogyakarta' },
-    { value: 'rspau_hardjolukito', label: 'RSPAU Hardjolukito' },
-    { value: 'rs_pku_muhammadiyah_yogyakarta', label: 'RS PKU Muhammadiyah Yogyakarta' },
-    { value: 'rs_bethesda_yogyakarta', label: 'RS Bethesda Yogyakarta' },
-    { value: 'rst_dr_soetarto_yogyakarta', label: 'RST Dr Soetarto Yogyakarta' },
-    { value: 'rs_panti_rapih', label: 'RS Panti Rapih' },
-    { value: 'rs_pku_muhammadiyah_bantul', label: 'RS PKU Muhammadiyah Bantul' },
-    { value: 'rs_queen_latifa', label: 'RS Queen Latifa' },
-    { value: 'rs_pku_muhammadiyah_gamping', label: 'RS PKU Muhammadiyah Gamping' },
-    { value: 'rsud_kota_yogyakarta', label: 'RSUD Kota Yogyakarta' },
-    { value: 'rsud_panembahan_senopati', label: 'RSUD Panembahan Senopati' },
-    { value: 'rsu_rajawali_citra', label: 'RSU Rajawali Citra' },
-    { value: 'rs_nur_hidayah', label: 'RS Nur Hidayah' },
-    { value: 'rsud_sleman', label: 'RSUD Sleman' },
-    { value: 'rs_mata_dr_yap', label: 'RS Mata Dr YAP' },
-    { value: 'rsud_wates', label: 'RSUD Wates' },
-    { value: 'rsud_prambanan', label: 'RSUD Prambanan' },
-    { value: 'rsud_wonosari', label: 'RSUD Wonosari' },
-    { value: 'rsud_nyi_ageng_serang', label: 'RSUD Nyi Ageng Serang' },
-    { value: 'rs_bhayangkara_polda_diy', label: 'RS Bhayangkara Polda DIY' },
-    { value: 'rs_bethesda_lempuyangwangi', label: 'RS Bethesda Lempuyangwangi' },
-    { value: 'rs_mitra_paramedika', label: 'RS Mitra Paramedika' },
-    { value: 'rs_at_turots_al_islamy', label: 'RS At Turots Al Islamy' },
-    { value: 'rumah_sakit_pku_muhammadiyah_wonosari', label: 'Rumah Sakit PKU Muhammadiyah Wonosari' }
+  { value: 'rs_at_turots_al_islamy', label: 'RS At Turots Al Islamy' },
+  { value: 'rs_bethesda_lempuyangwangi', label: 'RS Bethesda Lempuyangwangi' },
+  { value: 'rs_bethesda_yogyakarta', label: 'RS Bethesda Yogyakarta' },
+  { value: 'rs_bhayangkara_polda_diy', label: 'RS Bhayangkara Polda DIY' },
+  { value: 'rs_mata_dr_yap', label: 'RS Mata Dr YAP' },
+  { value: 'rs_mitra_paramedika', label: 'RS Mitra Paramedika' },
+  { value: 'rs_nur_hidayah', label: 'RS Nur Hidayah' },
+  { value: 'rs_panti_rapih', label: 'RS Panti Rapih' },
+  { value: 'rs_pku_muhammadiyah_bantul', label: 'RS PKU Muhammadiyah Bantul' },
+  { value: 'rs_pku_muhammadiyah_gamping', label: 'RS PKU Muhammadiyah Gamping' },
+  { value: 'rs_pku_muhammadiyah_wonosari', label: 'RS PKU Muhammadiyah Wonosari' },
+  { value: 'rs_pku_muhammadiyah_yogyakarta', label: 'RS PKU Muhammadiyah Yogyakarta' },
+  { value: 'rs_queen_latifa', label: 'RS Queen Latifa' },
+  { value: 'rs_u_rajawali_citra', label: 'RSU Rajawali Citra' },
+  { value: 'rsud_kota_yogyakarta', label: 'RSUD Kota Yogyakarta' },
+  { value: 'rsud_nyi_ageng_serang', label: 'RSUD Nyi Ageng Serang' },
+  { value: 'rsud_panembahan_senopati', label: 'RSUD Panembahan Senopati' },
+  { value: 'rsud_prambanan', label: 'RSUD Prambanan' },
+  { value: 'rsud_sleman', label: 'RSUD Sleman' },
+  { value: 'rsud_wates', label: 'RSUD Wates' },
+  { value: 'rsud_wonosari', label: 'RSUD Wonosari' },
+  { value: 'rspau_hardjolukito', label: 'RSPAU Hardjolukito' },
+  { value: 'rsu_rajawali_citra', label: 'RSU Rajawali Citra' },
+  { value: 'rsup_dr_sardjito_yogyakarta', label: 'RSUP Dr Sardjito Yogyakarta' },
+  { value: 'rst_dr_soetarto_yogyakarta', label: 'RST Dr Soetarto Yogyakarta' },
 ];
 
 const sentiments = ref([]);
@@ -227,7 +230,7 @@ const count = ref(0);
 
 const page = ref(1)
 const perPage = 10
-const totalPages = computed(() => Math.ceil(count.value / perPage))
+const totalPages = ref(0);
 
 const pageNumbers = computed(() => {
     const total = totalPages.value
@@ -264,6 +267,9 @@ function scrollToTop() {
     }
 }
 
+
+const baseUrl = import.meta.env.VITE_API_URL;
+
 async function fetchSentimentData() {
     try {
         const location = selectedLocation.value;
@@ -271,10 +277,11 @@ async function fetchSentimentData() {
         const type = selectedType.value;
         const currentPage = page.value;
 
-        const res = await fetch(`http://localhost:5000/api/sentiment-analysis?location=${location}&rating=${rating}&type=${type}&page=${currentPage}&per_page=${perPage}`)
+        const res = await fetch(`${baseUrl}/api/sentiment-analysis?location=${location}&rating=${rating}&type=${type}&page=${currentPage}&per_page=${perPage}`)
         const data = await res.json()
         sentiments.value = data.sentiment
         count.value = data.count
+        totalPages.value = data.pagination.total_pages
         console.log(data)
     } catch (error) {
         console.error('Fetch error:', error)
