@@ -85,14 +85,14 @@ async function saveChanges() {
         }
 
         emit('updated')
-        // Tampilkan toast
-        isShowModal.value = false
-        isShowToast.value = true
 
-        // Sembunyikan toast setelah 3 detik
+        isShowModal.value = false
         setTimeout(() => {
-            isShowToast.value = false
-        }, 3000)
+            isShowToast.value = true
+            setTimeout(() => {
+                isShowToast.value = false
+            }, 3000)
+        }, 10)
     } catch (err) {
         console.error('Network error:', err)
     }
