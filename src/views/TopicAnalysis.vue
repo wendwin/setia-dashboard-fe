@@ -6,8 +6,7 @@
                         <h1 class="text-lg font-semibold lg:text-[28px] mb-2 text-gray-700 dark:text-gray-300">Topic
                             Insight Explorer at Hospitals in
                             Yogyakarta</h1>
-                        <p class="text-[15px] mb-5 text-gray-700 dark:text-gray-300">Unveiling Key Discussion Topics
-                            with BERTopic Analysis</p>
+                        <p class="text-[15px] mb-5 text-gray-700 dark:text-gray-300">Analisis BERTopic</p>
                         <ul class="space-y-1 text-gray-700 dark:text-gray-300 list-disc list-inside">
                             <li>
                                 <strong>Topic Highlights</strong><br>
