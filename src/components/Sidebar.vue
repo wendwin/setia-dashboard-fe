@@ -87,11 +87,11 @@
                     v-show="$route.params.step === 'stemming'" aria-hidden="true"></span>
                   <router-link class="w-full" :to="{ name: 'preprocessing', params: { step: 'stemming' } }">Stemming</router-link>
                 </li>         
-                <li class="relative px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                <!-- <li class="relative px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
                   <span class="absolute inset-y-0 left-0 w-1 bg-blue-500 rounded-tr-lg rounded-br-lg"
                     v-show="$route.params.step === 'representation'" aria-hidden="true"></span>
                   <a class="w-full">Representation</a>
-                </li>         
+                </li>          -->
               </ul>
             </transition>
           </li>
@@ -246,9 +246,9 @@
                       v-show="$route.path === '/preprocessing/stemming'" aria-hidden="true"></span>
                     <router-link class="w-full" :to="{ name: 'preprocessing', params: { step: 'stemming' } }" @click="closeSideMenu">Stemming</router-link>
                   </li>
-                  <li class="relative px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                  <!-- <li class="relative px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
                     <a class="w-full">Representation</a>
-                  </li>
+                  </li> -->
                 
                 </ul>
               </transition>
