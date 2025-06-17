@@ -11,9 +11,9 @@
         </template>
         <template #body>
             <form action="">
-                <fwb-textarea v-model="message1" :rows="4" label="Message 1" placeholder="Write your message..."
+                <fwb-textarea v-model="message1" :rows="4" label="Insight" placeholder="Write your message..."
                     class="mb-3" />
-                <fwb-textarea v-model="message2" :rows="4" label="Mmessage 2" placeholder="Write your message..." />
+                <fwb-textarea v-model="message2" :rows="4" label="Peningkatan Mutu" placeholder="Write your message..." />
             </form>
         </template>
         <template #footer>

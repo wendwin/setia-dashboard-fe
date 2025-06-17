@@ -9,9 +9,9 @@
                     <fwb-accordion>
                         <fwb-accordion-panel v-for="(topic, index) in topicsPos" :key="index">
                             <fwb-accordion-header>{{ topic.topic }}</fwb-accordion-header>
-                            <fwb-accordion-content>
+                            <!-- <fwb-accordion-content>
                                 <div v-for="(s, i) in topic.suggestions" :key="s.id">
-                                    <h4 class="text-gray-500 dark:text-gray-400 mb-2">Message {{ i + 1 }}</h4>
+                                    <h4 class="text-gray-500 dark:text-gray-400 mb-2">Insight {{ i + 1 }}</h4>
                                     <p class="mb-2 text-gray-500 dark:text-gray-400">{{ s.content }}</p>
                                     <hr v-if="i < topic.suggestions.length - 1"
                                         class="my-4 border-t border-gray-300 dark:border-gray-700" />
@@ -19,7 +19,22 @@
                                  <div class="flex justify-end">
                                     <ModalEdit @updated="fetchTopics" :suggestions="topic.suggestions" :topic="topic.topic" :topicId="topic.id" :typeTopic="typeTopic"/>
                                 </div>
+                            </fwb-accordion-content> -->
+                            <fwb-accordion-content>
+                                <div v-for="(s, i) in topic.suggestions" :key="s.id">
+                                    <h4 class="text-gray-500 dark:text-gray-400 mb-2">
+                                        {{ i === 1 ? 'Peningkatan mutu' : 'Insight ' }}
+                                    </h4>
+                                    <p class="mb-2 text-gray-500 dark:text-gray-400">{{ s.content }}</p>
+                                    <hr v-if="i < topic.suggestions.length - 1"
+                                        class="my-4 border-t border-gray-300 dark:border-gray-700" />
+                                </div>
+                                <div class="flex justify-end">
+                                    <ModalEdit @updated="fetchTopics" :suggestions="topic.suggestions"
+                                        :topic="topic.topic" :topicId="topic.id" :typeTopic="typeTopic" />
+                                </div>
                             </fwb-accordion-content>
+
                         </fwb-accordion-panel>
                     </fwb-accordion>
                 </div>
@@ -35,15 +50,30 @@
                             <fwb-accordion-header>{{ topic.topic }}</fwb-accordion-header>
                             <fwb-accordion-content>
                                 <div v-for="(s, i) in topic.suggestions" :key="s.id">
+                                    <h4 class="text-gray-500 dark:text-gray-400 mb-2">
+                                        {{ i === 1 ? 'Peningkatan mutu' : 'Insight ' }}
+                                    </h4>
+                                    <p class="mb-2 text-gray-500 dark:text-gray-400">{{ s.content }}</p>
+                                    <hr v-if="i < topic.suggestions.length - 1"
+                                        class="my-4 border-t border-gray-300 dark:border-gray-700" />
+                                </div>
+                                <div class="flex justify-end">
+                                    <ModalEdit @updated="fetchTopics" :suggestions="topic.suggestions"
+                                        :topic="topic.topic" :topicId="topic.id" :typeTopic="typeTopic" />
+                                </div>
+                            </fwb-accordion-content>
+                            <!-- <fwb-accordion-content>
+                                <div v-for="(s, i) in topic.suggestions" :key="s.id">
                                     <h4 class="text-gray-500 dark:text-gray-400 mb-2">Message {{ i + 1 }}</h4>
                                     <p class="mb-2 text-gray-500 dark:text-gray-400">{{ s.content }}</p>
                                     <hr v-if="i < topic.suggestions.length - 1"
                                         class="my-4 border-t border-gray-300 dark:border-gray-700" />
                                 </div>
                                 <div class="flex justify-end">
-                                    <ModalEdit @updated="fetchTopics" :suggestions="topic.suggestions" :topic="topic.topic" :topicId="topic.id" :typeTopic="typeTopic"/>
+                                    <ModalEdit @updated="fetchTopics" :suggestions="topic.suggestions"
+                                        :topic="topic.topic" :topicId="topic.id" :typeTopic="typeTopic" />
                                 </div>
-                            </fwb-accordion-content>
+                            </fwb-accordion-content> -->
                         </fwb-accordion-panel>
                     </fwb-accordion>
                 </div>
@@ -52,7 +82,7 @@
 
         <CoherenceTypeA />
 
-        <WordTypeA/>
+        <WordTypeA />
 
         <div
             class="mb-5 overflow-hidden w-full h-[95vh] bg-white dark:bg-[#374151] rounded-lg shadow-md focus:outline-none border-1 border-gray-100">
@@ -86,7 +116,7 @@ import {
 } from "flowbite-vue";
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { ref, onMounted } from 'vue'
-import ModalEdit from "../../ModalEdit.vue"    
+import ModalEdit from "../../ModalEdit.vue"
 
 const topicsPos = ref([])
 const topicsNeg = ref([])
@@ -95,15 +125,15 @@ const typeTopic = ref('')
 const baseUrl = import.meta.env.VITE_API_URL;
 
 const fetchTopics = async () => {
-  try {
-    const res = await fetch(`${baseUrl}/api/topics?type=A`)
-    const data = await res.json()
-    topicsPos.value = data.positive
-    topicsNeg.value = data.negative
-    typeTopic.value = data.typeTopic
-  } catch (err) {
-    console.error('Gagal mengambil data:', err)
-  }
+    try {
+        const res = await fetch(`${baseUrl}/api/topics?type=A`)
+        const data = await res.json()
+        topicsPos.value = data.positive
+        topicsNeg.value = data.negative
+        typeTopic.value = data.typeTopic
+    } catch (err) {
+        console.error('Gagal mengambil data:', err)
+    }
 }
 
 onMounted(fetchTopics)
