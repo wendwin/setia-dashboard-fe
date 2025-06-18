@@ -6,14 +6,14 @@
     <fwb-modal v-if="isShowModal" @close="closeModal">
         <template #header>
             <div class="flex items-center text-lg font-semibold text-gray-800 dark:text-gray-300">
-                Edit {{ props.topic }} Type {{ props.typeTopic }}
+                Edit Summary Tipe {{ props.typeTopic }}
             </div>
         </template>
         <template #body>
             <form action="">
-                <fwb-textarea v-model="message1" :rows="4" label="Insight" placeholder="Write your message..."
+                <fwb-textarea v-model="summary1" :rows="4" label="Positif" placeholder="Write your message..."
                     class="mb-3" />
-                <fwb-textarea v-model="message2" :rows="4" label="Peningkatan Mutu" placeholder="Write your message..." />
+                <fwb-textarea v-model="summary2" :rows="4" label="Negatif" placeholder="Write your message..." />
             </form>
         </template>
         <template #footer>
@@ -24,9 +24,9 @@
             </div>
         </template>
     </fwb-modal>
-    <fwb-toast v-if="isShowToast" class="fixed top-4 lg:top-16 right-4 z-50 font-bold text-lg " type="success">
+    <fwb-toast v-if="isShowToast" class="fixed top-4 lg:top-16 right-4 z-50 font-bold text-lg" type="success">
         <div class="flex items-center gap-3">
-            <p>Topic updated successfully.</p>
+            <p>Summary updated successfully.</p>
         </div>
     </fwb-toast>
 </template>
@@ -35,9 +35,9 @@
 import { ref, watch, defineEmits } from 'vue'
 import { FwbButton, FwbModal, FwbTextarea, FwbToast } from 'flowbite-vue'
 
-const props = defineProps(['suggestions', 'topic', 'topicId', 'typeTopic'])
-const message1 = ref('')
-const message2 = ref('')
+const props = defineProps(['summaryPos', 'summaryNeg', 'typeTopic' ,'summaryId'])
+const summary1 = ref('')
+const summary2 = ref('')
 const emit = defineEmits(['updated'])
 
 
@@ -51,11 +51,12 @@ function showModal() {
 }
 
 watch(isShowModal, (val) => {
-    if (val && props.suggestions.length >= 2) {
-        message1.value = props.suggestions[0].content || ''
-        message2.value = props.suggestions[1].content || ''
+    if (val) {
+        summary1.value = props.summaryPos.content || ''
+        summary2.value = props.summaryNeg.content || ''
     }
 })
+
 
 const isShowToast = ref(false)
 
@@ -64,12 +65,13 @@ const baseUrl = import.meta.env.VITE_API_URL;
 
 async function saveChanges() {
     const payload = [
-        { id: props.suggestions[0].id, content: message1.value },
-        { id: props.suggestions[1].id, content: message2.value }
+        { id: props.summaryPos.id, content: summary1.value },
+        { id: props.summaryNeg.id, content: summary2.value }
     ]
 
+
     try {
-        const res = await fetch(`${baseUrl}/api/suggestions/bulk-update`, {
+        const res = await fetch(`${baseUrl}/api/summaries/bulk-update`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
