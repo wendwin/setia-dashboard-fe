@@ -35,12 +35,7 @@
                             <fwb-accordion-header>Positive Sentiment</fwb-accordion-header>
                             <fwb-accordion-content>
                                 <p class="mb-2 text-gray-500 dark:text-gray-400">
-                                    Positive sentiment rs type a
-                                </p>
-                                <p class="text-gray-500 dark:text-gray-400">
-                                    Check out this guide to learn how to <a href="/docs/getting-started/introduction/"
-                                        class="text-blue-600 hover:underline dark:text-blue-500">get started</a> and
-                                    start developing websites even faster with components on top of Tailwind CSS.
+                                    {{ summaryPos.content }}
                                 </p>
                             </fwb-accordion-content>
                         </fwb-accordion-panel>
@@ -49,23 +44,22 @@
                             <fwb-accordion-header>Negative Sentiment</fwb-accordion-header>
                             <fwb-accordion-content>
                                 <p class="mb-2 text-gray-500 dark:text-gray-400">
-                                    Flowbite is first conceptualized and designed using the Figma software so everything
-                                    you see in the library has a design equivalent in our Figma file.
-                                </p>
-                                <p class="text-gray-500 dark:text-gray-400">
-                                    Check out the <a href="https://flowbite.com/figma/"
-                                        class="text-blue-600 hover:underline dark:text-blue-500">Figma design system</a>
-                                    based on the utility classes from Tailwind CSS and components from Flowbite.
+                                    {{ summaryNeg.content }}
                                 </p>
                             </fwb-accordion-content>
                         </fwb-accordion-panel>
                     </fwb-accordion>
+                    <div class="flex justify-end mt-3">
+                        <ModalEditSummary @updated="fetchTopics" :summaryPos="summaryPos" :summaryNeg="summaryNeg" :summaryId="summaryPos.id"
+                            :typeTopic="typeTopic" />
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="grid gap-6 mb-8 lg:grid-cols-2">
-            <div class="min-w-0 p-4 bg-white rounded-lg dark:bg-gray-800 shadow-md border border-gray-200 dark:border-none">
+            <div
+                class="min-w-0 p-4 bg-white rounded-lg dark:bg-gray-800 shadow-md border border-gray-200 dark:border-none">
                 <!-- <h4 class="mb-5 text-center text-lg font-semibold text-gray-800 dark:text-gray-300">
                     Persentase Sentiment Hospitals Type A
                 </h4> -->
@@ -78,12 +72,14 @@
                         <ChartSentimentRealTypeA />
                     </div>
                     <div class="mb-4 lg:mb-0">
-                        <h2 class="text-center font-semibold mb-2 text-gray-800 dark:text-gray-300">Sentiment Prediction</h2>
+                        <h2 class="text-center font-semibold mb-2 text-gray-800 dark:text-gray-300">Sentiment Prediction
+                        </h2>
                         <ChartSentimentPredictTypeA />
                     </div>
                 </div>
             </div>
-            <div class="min-w-0 p-4 bg-white rounded-lg dark:bg-gray-800 shadow-md border border-gray-200 dark:border-none">
+            <div
+                class="min-w-0 p-4 bg-white rounded-lg dark:bg-gray-800 shadow-md border border-gray-200 dark:border-none">
                 <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
                     Coherence Score
                 </h4>
@@ -104,6 +100,30 @@ import {
     FwbAccordionHeader,
     FwbAccordionContent,
 } from 'flowbite-vue'
+
+import { ref, onMounted } from 'vue'
+import ModalEditSummary from "../../ModalEditSummary.vue"
+
+const summaryPos = ref([])
+const summaryNeg = ref([])
+const typeTopic = ref('')
+
+const baseUrl = import.meta.env.VITE_API_URL;
+
+const fetchTopics = async () => {
+    try {
+        const res = await fetch(`${baseUrl}/api/summary?type=A`)
+        const data = await res.json()
+        summaryPos.value = data.summary.positive
+        summaryNeg.value = data.summary.negative
+        typeTopic.value = data.summary.positive?.type_name || ''
+
+    } catch (err) {
+        console.error('Gagal mengambil data:', err)
+    }
+}
+
+onMounted(fetchTopics)
 </script>
 
 <style scoped>
