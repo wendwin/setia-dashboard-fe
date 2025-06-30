@@ -41,8 +41,8 @@ const route = useRoute()
 const labels = [2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 const scores = {
-  positive: [0.431, 0.464, 0.488, 0.483, 0.433, 0.464, 0.425, 0.451, 0.455],
-  negative: [0.41, 0.404, 0.405, 0.408, 0.414, 0.413, 0.401, 0.403, 0.394]
+  positive: [0.499, 0.509, 0.482, 0.512, 0.485, 0.455, 0.455, 0.431, 0.416],
+  negative: [0.371, 0.396, 0.37, 0.375, 0.379, 0.37, 0.351, 0.358, 0.37]
 }
 
 const makeDataset = (label, data, color) => ({
@@ -95,16 +95,16 @@ const chartData = computed(() => {
       {
         data: {
           labels,
-          datasets: [makeDataset('Positive', scores.positive, '#fd7e14')]
+          datasets: [makeDataset('Positif', scores.positive, '#fd7e14')]
         },
-        options: chartOptions('Positive', 0.44, 0.51)
+        options: chartOptions('Positif', 0.44, 0.51)
       },
       {
         data: {
           labels,
-          datasets: [makeDataset('Negative', scores.negative, '#20c997')]
+          datasets: [makeDataset('Negatif', scores.negative, '#20c997')]
         },
-        options: chartOptions('Negative', 0.26, 0.33)
+        options: chartOptions('Negatif', 0.26, 0.33)
       }
     ]
   } else {
@@ -113,8 +113,8 @@ const chartData = computed(() => {
         data: {
           labels,
           datasets: [
-            makeDataset('Positive', scores.positive, '#fd7e14'),
-            makeDataset('Negative', scores.negative, '#20c997')
+            makeDataset('Positif', scores.positive, '#fd7e14'),
+            makeDataset('Negatif', scores.negative, '#20c997')
           ]
         },
         options: chartOptions('Coherence Score per Number of Topics', 0, 1)
