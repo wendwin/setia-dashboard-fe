@@ -1,73 +1,75 @@
 <template>
     <div>
-        <div class="grid gap-6 mb-8 md:grid-cols-2 items-start">
+        <div class="grid gap-6 mb-8 md:grid-cols-2 items-stretch">
             <div
-                class="lg:flex items-center justify-evenly p-4 bg-white rounded-lg dark:bg-gray-800 lg:min-h-[322px] shadow-md border border-gray-200 dark:border-none">
-                <div class="flex items-center mb-5 lg:mb-0">
-                    <div
-                        class="p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500">
-                        <font-awesome-icon :icon="['fas', 'hospital']" class="text-xl" />
+                class="p-4 bg-white rounded-lg dark:bg-gray-800 shadow-md border border-gray-200 dark:border-none h-full flex flex-col justify-between">
+                <div class="lg:flex items-center justify-evenly flex-grow">
+                    <div class="flex items-center mb-5 lg:mb-0">
+                        <div
+                            class="p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500">
+                            <font-awesome-icon :icon="['fas', 'hospital']" class="text-xl" />
+                        </div>
+                        <div>
+                            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                                Total Reviews
+                            </p>
+                            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                                12,262
+                            </p>
+                        </div>
                     </div>
                     <div>
-                        <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                            Total Reviews
-                        </p>
-                        <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                            12,262
-                        </p>
+                        <p class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">Hospitals</p>
+                        <ul>
+                            <li class="text-sm text-gray-600 dark:text-gray-400">RS-B1</li>
+                            <li class="text-sm text-gray-600 dark:text-gray-400">RS-B2</li>
+                            <li class="text-sm text-gray-600 dark:text-gray-400">RS-B3</li>
+                            <li class="text-sm text-gray-600 dark:text-gray-400">RS-B4</li>
+                            <li class="text-sm text-gray-600 dark:text-gray-400">RS-B5</li>
+                            <li class="text-sm text-gray-600 dark:text-gray-400">RS-B6</li>
+                            <li class="text-sm text-gray-600 dark:text-gray-400">RS-B7</li>
+                            <li class="text-sm text-gray-600 dark:text-gray-400">RS-B8</li>
+                            <li class="text-sm text-gray-600 dark:text-gray-400">RS-B9</li>
+                            <li class="text-sm text-gray-600 dark:text-gray-400">RS-B10</li>
+                            <li class="text-sm text-gray-600 dark:text-gray-400">RS-B11</li>
+                        </ul>
                     </div>
-                </div>
-                <div class="">
-                    <p class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">Hospitals</p>
-                    <ul>
-                        <li class="text-sm text-gray-600 dark:text-gray-400">RSUD Panembahan Senopati</li>
-                        <li class="text-sm text-gray-600 dark:text-gray-400">RSUD Kota Yogyakarta</li>
-                        <li class="text-sm text-gray-600 dark:text-gray-400">RSUD Wates</li>
-                        <li class="text-sm text-gray-600 dark:text-gray-400">RSUD Wonosari</li>
-                        <li class="text-sm text-gray-600 dark:text-gray-400">RSUD Sleman</li>
-                        <li class="text-sm text-gray-600 dark:text-gray-400">RSPAU dr.S. Hardjolukito</li>
-                        <li class="text-sm text-gray-600 dark:text-gray-400">RS Mata Dr. YAP</li>
-                        <li class="text-sm text-gray-600 dark:text-gray-400">RS Bethesda Yogyakarta</li>
-                        <li class="text-sm text-gray-600 dark:text-gray-400">RS PKU Muhammadiyah Yogyakarta</li>
-                        <li class="text-sm text-gray-600 dark:text-gray-400">RS PKU Muhammadiyah Gamping</li>
-                        <li class="text-sm text-gray-600 dark:text-gray-400">RS Panti Rapih</li>
-                    </ul>
                 </div>
             </div>
 
-            <div class="p-4 bg-white rounded-lg dark:bg-gray-800 shadow-md border border-gray-200 dark:border-none">
-                <div>
+            <div
+                class="p-4 bg-white rounded-lg dark:bg-gray-800 shadow-md border border-gray-200 dark:border-none h-full flex flex-col">
+                <div class="flex-grow flex flex-col">
                     <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
                         Summary Insight
                     </h4>
-                    <fwb-accordion>
-                        <fwb-accordion>
-                            <fwb-accordion-panel class="w-full">
-                                <fwb-accordion-header>Positive Sentiment</fwb-accordion-header>
-                                <fwb-accordion-content>
-                                    <p class="mb-2 text-gray-500 dark:text-gray-400">
-                                        {{ summaryPos.content }}
-                                    </p>
-                                </fwb-accordion-content>
-                            </fwb-accordion-panel>
+                    <fwb-accordion class="flex-grow">
+                        <fwb-accordion-panel class="w-full">
+                            <fwb-accordion-header>Positive Sentiment</fwb-accordion-header>
+                            <fwb-accordion-content>
+                                <p class="mb-2 text-gray-500 dark:text-gray-400">
+                                    {{ summaryPos.content }}
+                                </p>
+                            </fwb-accordion-content>
+                        </fwb-accordion-panel>
 
-                            <fwb-accordion-panel>
-                                <fwb-accordion-header>Negative Sentiment</fwb-accordion-header>
-                                <fwb-accordion-content>
-                                    <p class="mb-2 text-gray-500 dark:text-gray-400">
-                                        {{ summaryNeg.content }}
-                                    </p>
-                                </fwb-accordion-content>
-                            </fwb-accordion-panel>
-                        </fwb-accordion>
-                        <div class="flex justify-end mt-3">
-                            <ModalEditSummary @updated="fetchTopics" :summaryPos="summaryPos" :summaryNeg="summaryNeg"
-                                :summaryId="summaryPos.id" :typeTopic="typeTopic" />
-                        </div>
+                        <fwb-accordion-panel>
+                            <fwb-accordion-header>Negative Sentiment</fwb-accordion-header>
+                            <fwb-accordion-content>
+                                <p class="mb-2 text-gray-500 dark:text-gray-400">
+                                    {{ summaryNeg.content }}
+                                </p>
+                            </fwb-accordion-content>
+                        </fwb-accordion-panel>
                     </fwb-accordion>
+                    <div class="flex justify-end mt-3">
+                        <ModalEditSummary @updated="fetchTopics" :summaryPos="summaryPos" :summaryNeg="summaryNeg"
+                            :summaryId="summaryPos.id" :typeTopic="typeTopic" />
+                    </div>
                 </div>
             </div>
         </div>
+
 
         <div class="grid gap-6 mb-8 lg:grid-cols-2">
             <div

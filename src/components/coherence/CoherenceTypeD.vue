@@ -2,16 +2,16 @@
   <div>
     <template v-if="route.path === '/topic-analysis'">
       <div class="grid gap-6 mb-8 md:grid-cols-2 grid-cols-1 items-start">
-        <div class="p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 w-full overflow-x-auto min-h-[250px]">
+        <div class="p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 w-full overflow-x-auto min-h-[250px] shadow-md border border-gray-200 dark:border-none">
           <Line :data="chartData[0].data" :options="chartData[0].options" />
         </div>
-        <div class="p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 w-full overflow-x-auto min-h-[250px]">
+        <div class="p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 w-full overflow-x-auto min-h-[250px] shadow-md border border-gray-200 dark:border-none">
           <Line :data="chartData[1].data" :options="chartData[1].options" />
         </div>
       </div>
     </template>
     <template v-else>
-      <div class="p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 w-full overflow-x-auto min-h-[250px]">
+      <div class="p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 w-full overflow-x-auto min-h-[250px] shadow-md border border-gray-200 dark:border-none">
         <Line :data="chartData[0].data" :options="chartData[0].options" />
       </div>
     </template>
@@ -41,8 +41,8 @@ const route = useRoute()
 const labels = [2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 const scores = {
-  positive: [0.475, 0.486, 0.517, 0.506, 0.498, 0.521, 0.489, 0.488, 0.478],
-  negative: [0.457, 0.451, 0.419, 0.42, 0.416, 0.427, 0.428, 0.431, 0.412]
+  positive: [0.49, 0.531, 0.497, 0.485, 0.504, 0.473, 0.47, 0.451, 0.476],
+  negative: [0.457, 0.458, 0.44, 0.454, 0.447, 0.443, 0.437, 0.411, 0.435]
 }
 
 const makeDataset = (label, data, color) => ({
@@ -95,16 +95,16 @@ const chartData = computed(() => {
       {
         data: {
           labels,
-          datasets: [makeDataset('Positive', scores.positive, '#6f42c1')]
+          datasets: [makeDataset('Positif', scores.positive, '#6f42c1')]
         },
-        options: chartOptions('Positive', 0.44, 0.51)
+        options: chartOptions('Positif', 0.44, 0.51)
       },
       {
         data: {
           labels,
-          datasets: [makeDataset('Negative', scores.negative, '#e83e8c')]
+          datasets: [makeDataset('Negatif', scores.negative, '#e83e8c')]
         },
-        options: chartOptions('Negative', 0.26, 0.33)
+        options: chartOptions('Negatif', 0.26, 0.33)
       }
     ]
   } else {
@@ -113,8 +113,8 @@ const chartData = computed(() => {
         data: {
           labels,
           datasets: [
-            makeDataset('Positive', scores.positive, '#6f42c1'),
-            makeDataset('Negative', scores.negative, '#e83e8c')
+            makeDataset('Positif', scores.positive, '#6f42c1'),
+            makeDataset('Negatif', scores.negative, '#e83e8c')
           ]
         },
         options: chartOptions('Coherence Score per Number of Topics', 0, 1)

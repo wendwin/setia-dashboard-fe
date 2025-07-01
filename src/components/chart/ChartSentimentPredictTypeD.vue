@@ -20,7 +20,7 @@ const chartData = {
   labels: ['Positif', 'Negatif'],
   datasets: [
     {
-      data: [2979, 1161],
+      data: [3035, 1105],
       backgroundColor: ['#e83e8c', '#f9d6e1'],
       borderColor: ['#e83e8c', '#f9d6e1'],
       borderWidth: 1
