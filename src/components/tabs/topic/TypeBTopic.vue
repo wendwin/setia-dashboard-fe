@@ -9,7 +9,7 @@
                     <fwb-accordion>
                         <fwb-accordion-panel v-for="(topic, index) in topicsPos" :key="index">
                             <fwb-accordion-header>{{ topic.topic }}</fwb-accordion-header>
-                            <fwb-accordion-content>
+                            <!-- <fwb-accordion-content>
                                 <div v-for="(s, i) in topic.suggestions" :key="s.id">
                                     <h4 class="text-gray-500 dark:text-gray-400 mb-2">Message {{ i + 1 }}</h4>
                                     <p class="mb-2 text-gray-500 dark:text-gray-400">{{ s.content }}</p>
@@ -18,6 +18,20 @@
                                 </div>
                                 <div class="flex justify-end">
                                     <ModalEdit @updated="fetchTopics" :suggestions="topic.suggestions" :topic="topic.topic" :topicId="topic.id" :typeTopic="typeTopic"/>
+                                </div>
+                            </fwb-accordion-content> -->
+                             <fwb-accordion-content>
+                                <div v-for="(s, i) in topic.suggestions" :key="s.id">
+                                    <h4 class="text-gray-500 dark:text-gray-400 mb-2">
+                                        {{ i === 1 ? 'Peningkatan Mutu' : 'Insight ' }}
+                                    </h4>
+                                    <p class="mb-2 text-gray-500 dark:text-gray-400">{{ s.content }}</p>
+                                    <hr v-if="i < topic.suggestions.length - 1"
+                                        class="my-4 border-t border-gray-300 dark:border-gray-700" />
+                                </div>
+                                <div class="flex justify-end">
+                                    <ModalEdit @updated="fetchTopics" :suggestions="topic.suggestions"
+                                        :topic="topic.topic" :topicId="topic.id" :typeTopic="typeTopic" />
                                 </div>
                             </fwb-accordion-content>
                         </fwb-accordion-panel>
@@ -35,6 +49,20 @@
                             <fwb-accordion-header>{{ topic.topic }}</fwb-accordion-header>
                             <fwb-accordion-content>
                                 <div v-for="(s, i) in topic.suggestions" :key="s.id">
+                                    <h4 class="text-gray-500 dark:text-gray-400 mb-2">
+                                        {{ i === 1 ? 'Peningkatan Mutu' : 'Insight ' }}
+                                    </h4>
+                                    <p class="mb-2 text-gray-500 dark:text-gray-400">{{ s.content }}</p>
+                                    <hr v-if="i < topic.suggestions.length - 1"
+                                        class="my-4 border-t border-gray-300 dark:border-gray-700" />
+                                </div>
+                                <div class="flex justify-end">
+                                    <ModalEdit @updated="fetchTopics" :suggestions="topic.suggestions"
+                                        :topic="topic.topic" :topicId="topic.id" :typeTopic="typeTopic" />
+                                </div>
+                            </fwb-accordion-content>
+                            <!-- <fwb-accordion-content>
+                                <div v-for="(s, i) in topic.suggestions" :key="s.id">
                                     <h4 class="text-gray-500 dark:text-gray-400 mb-2">Message {{ i + 1 }}</h4>
                                     <p class="mb-2 text-gray-500 dark:text-gray-400">{{ s.content }}</p>
                                     <hr v-if="i < topic.suggestions.length - 1"
@@ -43,7 +71,7 @@
                                 <div class="flex justify-end">
                                     <ModalEdit @updated="fetchTopics" :suggestions="topic.suggestions" :topic="topic.topic" :topicId="topic.id" :typeTopic="typeTopic"/>
                                 </div>
-                            </fwb-accordion-content>
+                            </fwb-accordion-content> -->
                         </fwb-accordion-panel>
                     </fwb-accordion>
                 </div>
