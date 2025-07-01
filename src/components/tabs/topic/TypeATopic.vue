@@ -89,7 +89,7 @@
             <p class="p-4 font-semibold text-gray-800 dark:text-gray-300">
                 Positive Topic Distance Map
             </p>
-            <iframe src="/assets/visualization/lda_visualization_positif_a.html" class="w-full h-screen"
+            <iframe src="/assets/visualization/lda_visualization_positif_a(X).html" class="w-full h-screen"
                 style="border: none"></iframe>
         </div>
 
@@ -98,7 +98,7 @@
             <p class="p-4 font-semibold text-gray-800 dark:text-gray-300">
                 Negative Topic Distance Map
             </p>
-            <iframe src="/assets/visualization/lda_visualization_negatif_a.html" class="w-full h-screen"
+            <iframe src="/assets/visualization/lda_visualization_negatif_a(X).html" class="w-full h-screen"
                 style="border: none"></iframe>
         </div>
     </div>

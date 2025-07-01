@@ -85,14 +85,14 @@
         <div
             class="mb-5 overflow-hidden w-full h-[95vh] bg-white dark:bg-[#374151] rounded-lg shadow-md focus:outline-none border-1 border-gray-100">
             <p class="p-4 font-semibold text-gray-800 dark:text-gray-300">Positive Topic Distance Map</p>
-            <iframe src="/assets/visualization/lda_visualization_positif_d.html" class="w-full h-screen"
+            <iframe src="/assets/visualization/lda_visualization_positif_d(X).html" class="w-full h-screen"
                 style="border: none;"></iframe>
         </div>
 
         <div
             class="mb-5 overflow-hidden w-full h-[95vh] bg-white dark:bg-[#374151] rounded-lg shadow-md focus:outline-none border-1 border-gray-100">
             <p class="p-4 font-semibold text-gray-800 dark:text-gray-300">Negative Topic Distance Map</p>
-            <iframe src="/assets/visualization/lda_visualization_negatif_d.html" class="w-full h-screen"
+            <iframe src="/assets/visualization/lda_visualization_negatif_d(X).html" class="w-full h-screen"
                 style="border: none;"></iframe>
         </div>
     </div>
