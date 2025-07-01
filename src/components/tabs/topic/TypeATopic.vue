@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="grid gap-6 mb-8 md:grid-cols-2 items-stretch">
-            <div class="p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 h-full flex flex-col">
+            <div class="p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 h-full flex flex-col  shadow-md border border-gray-200 dark:border-none">
                 <div class="flex-grow flex flex-col">
                     <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
                         Positive Topic Highlights
@@ -40,7 +40,7 @@
                 </div>
             </div>
 
-            <div class="p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+            <div class="p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800  shadow-md border border-gray-200 dark:border-none">
                 <div>
                     <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
                         Negative Topic Highlights

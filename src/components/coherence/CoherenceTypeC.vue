@@ -2,16 +2,16 @@
   <div>
     <template v-if="route.path === '/topic-analysis'">
       <div class="grid gap-6 mb-8 md:grid-cols-2 grid-cols-1 items-start">
-        <div class="p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 w-full overflow-x-auto min-h-[200px]">
+        <div class="p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 w-full overflow-x-auto min-h-[200px] shadow-md border border-gray-200 dark:border-none">
           <Line :data="chartData[0].data" :options="chartData[0].options" />
         </div>
-        <div class="p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 w-full overflow-x-auto min-h-[200px]">
+        <div class="p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 w-full overflow-x-auto min-h-[200px] shadow-md border border-gray-200 dark:border-none">
           <Line :data="chartData[1].data" :options="chartData[1].options" />
         </div>
       </div>
     </template>
     <template v-else>
-      <div class="p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 w-full overflow-x-auto min-h-[200px]">
+      <div class="p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 w-full overflow-x-auto min-h-[200px] shadow-md border border-gray-200 dark:border-none">
         <Line :data="chartData[0].data" :options="chartData[0].options" />
       </div>
     </template>
