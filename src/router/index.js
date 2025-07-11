@@ -5,6 +5,7 @@ import DataReviews from '../views/DataReviews.vue';
 import DataPreprocessing from '../views/DataPrerocessing.vue';
 import SentimentAnalysis from "../views/SentimentAnalysis.vue";
 import TopicAnalysis from "../views/TopicAnalysis.vue";
+import Login from "../views/Login.vue";
 
 const router = createRouter({
     routes: [
@@ -19,6 +20,10 @@ const router = createRouter({
               { path: '/topic-analysis', name: 'topic-analysis', component: TopicAnalysis },
             ]
         },
+        {
+            path: '/login',
+            component: Login,
+        }
     ],
     history: createWebHistory()
 })
