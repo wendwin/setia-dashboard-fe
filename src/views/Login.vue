@@ -13,42 +13,44 @@
                         <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
                             Login
                         </h1>
-                        <p v-if="error" class="mt-2 text-sm text-red-500">
+                        <p v-if="error" class="my-2 text-sm text-red-500">
                             {{ error }}
                         </p>
 
-                        <label class="block text-sm">
-                            <span class="text-gray-700 dark:text-gray-400">Email</span>
-                            <input
-                                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                placeholder="Email" v-model="email" />
-                        </label>
-                        <label class="block mt-4 text-sm">
-                            <span class="text-gray-700 dark:text-gray-400">Password</span>
-                            <input
-                                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                placeholder="***************" type="password" v-model="password" />
-                        </label>
-
-                        <!-- You should use a button here, as the anchor is only used for the example  -->
-                        <button @click="handleLogin"
-                            class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-                            href="#">
-                            Log in
-                        </button>
+                        <form @submit.prevent="handleLogin">
+                            <label class="block text-sm">
+                                <span class="text-gray-700 dark:text-gray-400">Email</span>
+                                <input
+                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                    placeholder="Email" v-model="email" required/>
+                            </label>
+                            <label class="block mt-4 text-sm">
+                                <span class="text-gray-700 dark:text-gray-400">Password</span>
+                                <input
+                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                    placeholder="***************" type="password" v-model="password" required/>
+                            </label>
+    
+                            <!-- You should use a button here, as the anchor is only used for the example  -->
+                            <button  type="submit"
+                                class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-blue-500 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-purple"
+                                href="#">
+                                Log in
+                            </button>   
+                        </form>
 
                         <hr class="my-8" />
 
                         <p class="mt-4">
-                            <a class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
-                                href="./forgot-password.html">
-                                Forgot your password?
+                            <a class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
+                                href="#">
+                                Lupa password?
                             </a>
                         </p>
                         <p class="mt-1">
-                            <a class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
-                                href="./create-account.html">
-                                Create account
+                            <a class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
+                                href="#">
+                                Buat akun
                             </a>
                         </p>
                     </div>
@@ -71,7 +73,7 @@ const baseUrl = import.meta.env.VITE_API_URL;
 const handleLogin = async () => {
     error.value = null
     try {
-        const response = await fetch(`${baseUrl}api/login`, {
+        const response = await fetch(`${baseUrl}/api/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -84,12 +86,16 @@ const handleLogin = async () => {
 
         const data = await response.json()
 
-        if (response.ok) {
-            localStorage.setItem('access_token', data.access_token)
-            router.push('/')
-
+        if (!response.ok) {
             error.value = data.msg || 'Login gagal'
+            email.value = ''
+            password.value = ''
+            return
         }
+
+        // Jika berhasil login
+        localStorage.setItem('access_token', data.access_token)
+        router.push('/')
     } catch (err) {
         error.value = 'Terjadi kesalahan saat login'
     }
