@@ -1,5 +1,5 @@
 <template>
-    <div class="button-edit text-gray-600 cursor-pointer hover:text-blue-500" @click="showModal">
+    <div v-if="isLoggedIn" class="button-edit text-gray-600 cursor-pointer hover:text-blue-500" @click="showModal">
         <font-awesome-icon :icon="['fa', 'pen-to-square']" />
     </div>
 
@@ -32,8 +32,12 @@
 </template>
 
 <script setup>
-import { ref, watch, defineEmits } from 'vue'
+import { ref, watch, defineEmits, computed } from 'vue'
 import { FwbButton, FwbModal, FwbTextarea, FwbToast } from 'flowbite-vue'
+
+const isLoggedIn = computed(() => {
+  return !!localStorage.getItem('access_token')
+})
 
 const props = defineProps(['suggestions', 'topic', 'topicId', 'typeTopic'])
 const message1 = ref('')
@@ -72,7 +76,8 @@ async function saveChanges() {
         const res = await fetch(`${baseUrl}/api/suggestions/bulk-update`, {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('access_token')}`
             },
             body: JSON.stringify(payload)
         })

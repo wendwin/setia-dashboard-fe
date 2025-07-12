@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="grid gap-6 mb-8 md:grid-cols-2 items-stretch">
-            <div class="p-4 bg-white rounded-lg dark:bg-gray-800 shadow-md border border-gray-200 dark:border-none h-full flex flex-col justify-between md:min-h-[202px]">
+            <!-- <div class="p-4 bg-white rounded-lg dark:bg-gray-800 shadow-md border border-gray-200 dark:border-none h-full flex flex-col justify-between md:min-h-[202px]">
                 <div class="lg:flex items-center justify-evenly flex-grow">
                     <div class="flex items-center mb-5 lg:mb-0">
                         <div
@@ -24,9 +24,35 @@
                         </ul>
                     </div>
                 </div>
+            </div> -->
+            <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-none flex flex-col h-full md:min-h-[202px]">
+
+                <div class="flex items-center mb-6">
+                    <div
+                        class="p-4 rounded-full bg-orange-100 text-orange-500 dark:bg-orange-500 dark:text-orange-100 mr-4">
+                        <font-awesome-icon :icon="['fas', 'hospital']" class="text-xl" />
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Total Reviews</p>
+                        <h2 class="text-2xl font-bold text-gray-800 dark:text-white">2,259</h2>
+                    </div>
+                </div>
+
+                <hr class="border-gray-200 dark:border-gray-700 mb-4" />
+
+                <div class="flex-grow">
+                    <p class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">Hospitals</p>
+                    <ul class="columns-1 space-y-1">
+                        <li class="text-sm text-gray-700 dark:text-gray-300 break-inside-avoid">
+                            • RS-A1
+                        </li>
+                    </ul>
+                </div>
             </div>
 
-            <div class="p-4 bg-white rounded-lg dark:bg-gray-800 shadow-md border border-gray-200 dark:border-none h-full flex flex-col">
+
+            <div
+                class="p-4 bg-white rounded-lg dark:bg-gray-800 shadow-md border border-gray-200 dark:border-none h-full flex flex-col">
                 <div class="flex-grow flex flex-col">
                     <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
                         Summary Insight

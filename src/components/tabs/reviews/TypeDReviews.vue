@@ -2,7 +2,7 @@
     <div>
         <div class="grid gap-6 mb-8 md:grid-cols-2 items-stretch">
             <!-- CARD KIRI -->
-            <div
+            <!-- <div
                 class="p-4 bg-white rounded-lg shadow-md border border-gray-200 dark:border-none dark:bg-gray-800 h-full flex flex-col justify-between">
                 <div class="lg:flex items-center justify-evenly flex-grow">
                     <div class="flex items-center mb-5 lg:mb-0">
@@ -32,7 +32,33 @@
                         </ul>
                     </div>
                 </div>
+            </div> -->
+            <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-none flex flex-col h-full">
+                <div class="flex items-center mb-6">
+                    <div
+                        class="p-4 rounded-full bg-orange-100 text-orange-500 dark:bg-orange-500 dark:text-orange-100 mr-4">
+                        <font-awesome-icon :icon="['fas', 'hospital']" class="text-xl" />
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Total Reviews</p>
+                        <h2 class="text-2xl font-bold text-gray-800 dark:text-white">4,140</h2>
+                    </div>
+                </div>
+
+                <hr class="border-gray-200 dark:border-gray-700 mb-4" />
+
+                <div class="flex-grow">
+                    <p class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">Hospitals</p>
+                    <ul class="columns-2 sm:columns-3 md:columns-4 space-y-1">
+                        <li v-for="rs in ['RS-D1', 'RS-D2', 'RS-D3', 'RS-D4', 'RS-D5', 'RS-D6', 'RS-D7', 'RS-D8', 'RS-D9', 'RS-D10']"
+                            :key="rs" class="break-inside-avoid text-sm text-gray-700 dark:text-gray-300">
+                            • {{ rs }}
+                        </li>
+                    </ul>
+                </div>
             </div>
+
+
 
             <!-- CARD KANAN -->
             <div
@@ -141,5 +167,16 @@ onMounted(fetchTopics)
 ::v-deep(fwb-accordion-panel summary) {
     display: block;
     width: 100%;
+}
+
+
+/* Optional: scrollbar styling */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(100, 100, 100, 0.3);
+    border-radius: 4px;
 }
 </style>

@@ -22,7 +22,7 @@
                             </fwb-accordion-content> -->
                             <fwb-accordion-content>
                                 <div v-for="(s, i) in topic.suggestions" :key="s.id">
-                                    <h4 class="text-gray-500 dark:text-gray-400 mb-2">
+                                    <h4 class="text-gray-700 dark:text-gray-400 mb-2 font-semibold">
                                         {{ i === 1 ? 'Peningkatan Mutu' : 'Insight ' }}
                                     </h4>
                                     <p class="mb-2 text-gray-500 dark:text-gray-400">{{ s.content }}</p>
@@ -50,7 +50,7 @@
                             <fwb-accordion-header>{{ topic.topic }}</fwb-accordion-header>
                             <fwb-accordion-content>
                                 <div v-for="(s, i) in topic.suggestions" :key="s.id">
-                                    <h4 class="text-gray-500 dark:text-gray-400 mb-2">
+                                    <h4 class="text-gray-700 dark:text-gray-400 mb-2 font-semibold">
                                         {{ i === 1 ? 'Peningkatan Mutu' : 'Insight ' }}
                                     </h4>
                                     <p class="mb-2 text-gray-500 dark:text-gray-400">{{ s.content }}</p>

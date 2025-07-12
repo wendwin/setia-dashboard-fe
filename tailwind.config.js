@@ -13,7 +13,8 @@ export default {
     extend: {},
   },
   plugins: [
-     flowbitePlugin
+     flowbitePlugin,
+     require('@tailwindcss/forms')
   ],
 }
 
