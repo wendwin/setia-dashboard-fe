@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="grid gap-6 mb-8 md:grid-cols-2 items-stretch">
-            <div
+            <!-- <div
                 class="p-4 bg-white rounded-lg dark:bg-gray-800 shadow-md border border-gray-200 dark:border-none h-full flex flex-col justify-between">
                 <div class="lg:flex items-center justify-evenly flex-grow">
                     <div class="flex items-center mb-5 lg:mb-0">
@@ -35,7 +35,32 @@
                         </ul>
                     </div>
                 </div>
+            </div> -->
+            <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-none flex flex-col h-full">
+                <div class="flex items-center mb-6">
+                    <div
+                        class="p-4 rounded-full bg-orange-100 text-orange-500 dark:bg-orange-500 dark:text-orange-100 mr-4">
+                        <font-awesome-icon :icon="['fas', 'hospital']" class="text-xl" />
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Total Reviews</p>
+                        <h2 class="text-2xl font-bold text-gray-800 dark:text-white">12,262</h2>
+                    </div>
+                </div>
+
+                <hr class="border-gray-200 dark:border-gray-700 mb-4" />
+
+                <div class="flex-grow">
+                    <p class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">Hospitals</p>
+                    <ul class="columns-2 sm:columns-3 md:columns-4 space-y-1">
+                        <li v-for="rs in ['RS-B1', 'RS-B2', 'RS-B3', 'RS-B4', 'RS-B5', 'RS-B6', 'RS-B7', 'RS-B8', 'RS-B9', 'RS-B10', 'RS-B11']"
+                            :key="rs" class="break-inside-avoid text-sm text-gray-700 dark:text-gray-300">
+                            • {{ rs }}
+                        </li>
+                    </ul>
+                </div>
             </div>
+
 
             <div
                 class="p-4 bg-white rounded-lg dark:bg-gray-800 shadow-md border border-gray-200 dark:border-none h-full flex flex-col">
