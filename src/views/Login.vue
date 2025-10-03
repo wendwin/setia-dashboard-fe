@@ -4,7 +4,7 @@
             <div class="flex items-center justify-center p-6 sm:p-12">
                 <div class="w-full">
                     <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
-                        Login | <a href="/">STIAMU</a>
+                        Login | <a href="/" class="hover:text-blue-500">STIAMU</a>
                     </h1>
 
                     <p v-if="error" class="my-2 text-sm text-red-500">
@@ -18,12 +18,23 @@
                                 class="block w-full mt-1 text-sm rounded-md dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                 placeholder="Email" v-model="email" autocomplete="email" required />
                         </label>
-                        <label class="block mt-4 text-sm">
-                            <span class="text-gray-700 dark:text-gray-400">Password</span>
-                            <input
-                                class="block w-full mt-1 text-sm rounded-md dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                placeholder="***************" type="password" v-model="password"
-                                autocomplete="current-password" required />
+                        <label class="block mt-4 text-sm relative">
+                          <span class="text-gray-700 dark:text-gray-400">Password</span>
+                          <input
+                            :type="showPassword ? 'text' : 'password'"
+                            class="block w-full mt-1 text-sm rounded-md dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input pr-10"
+                            placeholder="***************"
+                            v-model="password"
+                            autocomplete="current-password"
+                            required
+                          />
+                          <button
+                            type="button"
+                            @click="showPassword = !showPassword"
+                            class="absolute right-2 top-8 text-gray-500 dark:text-gray-400 focus:outline-none hover:text-blue-500"
+                          >
+                           <font-awesome-icon :icon="showPassword ? 'eye-slash' : 'eye'" />
+                          </button>
                         </label>
 
                         <button type="submit" :disabled="loading"
@@ -110,6 +121,7 @@ import { useRouter } from 'vue-router'
 
 const email = ref('')
 const password = ref('')
+const showPassword = ref(false)
 const router = useRouter()
 const loading = ref(false)
 const error = ref(null)
@@ -133,8 +145,13 @@ const handleLogin = async () => {
         const data = await response.json()
 
         if (!response.ok) {
-            error.value = data.msg || 'Login gagal'
-            email.value = ''
+             // error validasi
+            if (typeof data === 'object') {
+                error.value = Object.values(data).flat().join(' ')
+            } else {
+                error.value = data.msg || 'Login gagal'
+            }
+            // email.value = ''
             password.value = ''
             return
         }
