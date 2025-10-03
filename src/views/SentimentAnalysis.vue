@@ -93,81 +93,88 @@
             </div>
 
             <div v-if="sentiments.length"
-                class="my-5 overflow-x-auto bg-white shadow-xs dark:bg-gray-800 border bottom-1 border-gray-200 dark:border-none">
-                <table class="table-auto border-collapse border border-gray-400 w-full">
-                    <thead>
-                        <tr>
-                            <th class="border border-gray-300 dark:text-white p-2">No</th>
-                            <th class="border border-gray-300 dark:text-white p-2">Review</th>
-                            <th class="border border-gray-300 dark:text-white p-2">Rating</th>
-                            <th class="border border-gray-300 dark:text-white p-2">Type</th>
-                            <th class="border border-gray-300 dark:text-white p-2">Sentiment</th>
-                            <th class="border border-gray-300 dark:text-white p-2">Prediction</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="(sentiment, index) in sentiments" :key="index">
-                            <td class="border border-gray-300 dark:text-white p-2 text-center">{{ (page - 1) *
-                                perPage + index + 1 }}</td>
-                            <td class="border border-gray-300 dark:text-white p-2 ">{{
-                                sentiment.stemmed_text_done }}</td>
-                            <td class="border border-gray-300 dark:text-white p-2 text-center">{{ sentiment.rating }}</td>
-                             <td class="border border-gray-300 dark:text-white p-2 text-center">{{
-                                sentiment.type_rs }}</td>
-                            <td class="border border-gray-300 dark:text-white p-2 text-center">{{ sentiment.label }}</td>
-                            <td class="border border-gray-300 dark:text-white p-2 text-center">{{
-                                sentiment.predicted_sentiment }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div
-                    class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500  border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800">
-                    <span class="flex items-center col-span-3">
+                class="my-5 bg-white shadow-xs dark:bg-gray-800 border bottom-1 border-gray-200 dark:border-none">
+                <div class="overflow-x-auto">
+                    <table class="table-auto border-collapse border border-gray-400 w-full">
+                        <thead>
+                            <tr>
+                                <th class="border border-gray-300 dark:text-white p-2">No</th>
+                                <th class="border border-gray-300 dark:text-white p-2">Review</th>
+                                <th class="border border-gray-300 dark:text-white p-2">Rating</th>
+                                <th class="border border-gray-300 dark:text-white p-2">Type</th>
+                                <th class="border border-gray-300 dark:text-white p-2">Sentiment</th>
+                                <th class="border border-gray-300 dark:text-white p-2">Prediction</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(sentiment, index) in sentiments" :key="index">
+                                <td class="border border-gray-300 dark:text-white p-2 text-center">
+                                    {{ (page - 1) * perPage + index + 1 }}
+                                </td>
+                                <td class="border border-gray-300 dark:text-white p-2">
+                                    {{ sentiment.stemmed_text_done }}
+                                </td>
+                                <td class="border border-gray-300 dark:text-white p-2 text-center">
+                                    {{ sentiment.rating }}
+                                </td>
+                                <td class="border border-gray-300 dark:text-white p-2 text-center">
+                                    {{ sentiment.type_rs }}
+                                </td>
+                                <td class="border border-gray-300 dark:text-white p-2 text-center">
+                                    {{ sentiment.label }}
+                                </td>
+                                <td class="border border-gray-300 dark:text-white p-2 text-center">
+                                    {{ sentiment.predicted_sentiment }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="w-full flex flex-col gap-2 px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 border-t 
+                          dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800 
+                            sm:flex-row sm:items-center sm:justify-between">
+                    <span class="flex items-center justify-center sm:justify-start">
                         Showing {{ start }}–{{ end }} of {{ totalPages }}
                     </span>
-                    <span class="col-span-2"></span>
 
-                    <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
-                        <nav aria-label="Table navigation">
-                            <ul class="inline-flex items-center">
-                                <ul class="inline-flex items-center">
-                                    <li>
-                                        <button @click="prevPage" :disabled="page === 1"
-                                            class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple"
-                                            aria-label="Previous">
-                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                                                <path
-                                                    d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                                                    clip-rule="evenodd" fill-rule="evenodd" />
-                                            </svg>
-                                        </button>
-                                    </li>
+                    <nav aria-label="Table navigation" class="flex justify-center sm:justify-end">
+                        <ul class="inline-flex items-center space-x-1">
+                            <li>
+                                <button @click="prevPage" :disabled="page === 1"
+                                    class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple disabled:opacity-50 disabled:cursor-not-allowed"
+                                    aria-label="Previous">
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                        <path
+                                            d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                                            clip-rule="evenodd" fill-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </li>
 
-                                    <li v-for="num in pageNumbers" :key="num">
-                                        <button v-if="num !== '...'" @click="goToPage(num)" :class="[
-                                            'px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple',
-                                            page === num ? 'bg-purple-600 text-white border border-purple-600' : ''
-                                        ]">
-                                            {{ num }}
-                                        </button>
-                                        <span v-else class="px-3 py-1">...</span>
-                                    </li>
+                            <li v-for="num in pageNumbers" :key="num">
+                                <button v-if="num !== '...'" @click="goToPage(num)" :class="[
+                                    'px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple',
+                                    page === num ? 'bg-blue-500 text-white border border-blue-500' : 'bg-white dark:bg-gray-700'
+                                ]">
+                                    {{ num }}
+                                </button>
+                                <span v-else class="px-3 py-1">...</span>
+                            </li>
 
-                                    <li>
-                                        <button @click="nextPage" :disabled="page === totalPages"
-                                            class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-purple"
-                                            aria-label="Next">
-                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                                                <path
-                                                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                                    clip-rule="evenodd" fill-rule="evenodd" />
-                                            </svg>
-                                        </button>
-                                    </li>
-                                </ul>
-                            </ul>
-                        </nav>
-                    </span>
+                            <li>
+                                <button @click="nextPage" :disabled="page === totalPages"
+                                    class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-purple disabled:opacity-50 disabled:cursor-not-allowed"
+                                    aria-label="Next">
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                        <path
+                                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                            clip-rule="evenodd" fill-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
 
@@ -218,30 +225,30 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 // ];
 
 const hospitals = [
-  { value: 'rsup_dr_sardjito_yogyakarta', label: 'RS-A1' },
-  { value: 'rsud_panembahan_senopati', label: 'RS-B1' },
-  { value: 'rsud_kota_yogyakarta', label: 'RS-B2' },
-  { value: 'rspau_hardjolukito', label: 'RS-B3' },
-  { value: 'rs_bethesda_yogyakarta', label: 'RS-B4' },
-  { value: 'rsud_wates', label: 'RS-B5' },
-  { value: 'rsud_wonosari', label: 'RS-B6' },
-  { value: 'rs_mata_dr_yap', label: 'RS-B7' },
-  { value: 'rsud_sleman', label: 'RS-B8' },
-  { value: 'rs_pku_muhammadiyah_yogyakarta', label: 'RS-B9' },
-  { value: 'rs_pku_muhammadiyah_gamping', label: 'RS-B10' },
-  { value: 'rs_panti_rapih', label: 'RS-B11' },
-  { value: 'rs_pku_muhammadiyah_bantul', label: 'RS-C1' },
-  { value: 'rsud_nyi_ageng_serang', label: 'RS-C2' },
-  { value: 'rsud_prambanan', label: 'RS-C3' },
-  { value: 'rs_at_turots_al_islamy', label: 'RS-C4' },
-  { value: 'rst_dr_soetarto_yogyakarta', label: 'RS-C5' },
-  { value: 'rs_queen_latifa', label: 'RS-D1' },
-  { value: 'rs_mitra_paramedika', label: 'RS-D2' },
-  { value: 'rs_bhayangkara_polda_diy', label: 'RS-D3' },
-  { value: 'rsu_rajawali_citra', label: 'RS-D4' },
-  { value: 'rs_nur_hidayah', label: 'RS-D5' },
-  { value: 'rs_bethesda_lempuyangwangi', label: 'RS-D6' },
-  { value: 'rs_pku_muhammadiyah_wonosari', label: 'RS-D7' }
+    { value: 'rsup_dr_sardjito_yogyakarta', label: 'RS-A1' },
+    { value: 'rsud_panembahan_senopati', label: 'RS-B1' },
+    { value: 'rsud_kota_yogyakarta', label: 'RS-B2' },
+    { value: 'rspau_hardjolukito', label: 'RS-B3' },
+    { value: 'rs_bethesda_yogyakarta', label: 'RS-B4' },
+    { value: 'rsud_wates', label: 'RS-B5' },
+    { value: 'rsud_wonosari', label: 'RS-B6' },
+    { value: 'rs_mata_dr_yap', label: 'RS-B7' },
+    { value: 'rsud_sleman', label: 'RS-B8' },
+    { value: 'rs_pku_muhammadiyah_yogyakarta', label: 'RS-B9' },
+    { value: 'rs_pku_muhammadiyah_gamping', label: 'RS-B10' },
+    { value: 'rs_panti_rapih', label: 'RS-B11' },
+    { value: 'rs_pku_muhammadiyah_bantul', label: 'RS-C1' },
+    { value: 'rsud_nyi_ageng_serang', label: 'RS-C2' },
+    { value: 'rsud_prambanan', label: 'RS-C3' },
+    { value: 'rs_at_turots_al_islamy', label: 'RS-C4' },
+    { value: 'rst_dr_soetarto_yogyakarta', label: 'RS-C5' },
+    { value: 'rs_queen_latifa', label: 'RS-D1' },
+    { value: 'rs_mitra_paramedika', label: 'RS-D2' },
+    { value: 'rs_bhayangkara_polda_diy', label: 'RS-D3' },
+    { value: 'rsu_rajawali_citra', label: 'RS-D4' },
+    { value: 'rs_nur_hidayah', label: 'RS-D5' },
+    { value: 'rs_bethesda_lempuyangwangi', label: 'RS-D6' },
+    { value: 'rs_pku_muhammadiyah_wonosari', label: 'RS-D7' }
 ];
 
 const sentiments = ref([]);

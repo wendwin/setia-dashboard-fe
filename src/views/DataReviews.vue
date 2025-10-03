@@ -9,7 +9,8 @@
               <p class="text-[15px]">Menu for Data and Sentiment Insights 24 hospitals in Yogyakarta</p>
             </div>
           </div>
-          <div class="hidden h-full lg:block p-4 bg-blue-500 w-[30%] rounded-lg shadow-md focus:outline-none focus:shadow-outline-blue">
+          <div
+            class="hidden h-full lg:block p-4 bg-blue-500 w-[30%] rounded-lg shadow-md focus:outline-none focus:shadow-outline-blue">
             <div class="flex items-center justify-between text-center gap-5">
               <p class="lg:text-sm xl:text-lg">
                 Total Reviews
@@ -45,12 +46,14 @@
         </header>
 
         <div class="w-full overflow-x-auto mb-4">
-          <div class="min-w-[600px] p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 border bottom-1 border-gray-200 dark:border-none">
-             <h4 class="mb-6 font-semibold text-gray-800 dark:text-gray-300">
-                Rating Count
-              </h4>
+          <div
+            class="min-w-[600px] p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 border bottom-1 border-gray-200 dark:border-none">
+            <h4 class="mb-6 font-semibold text-gray-800 dark:text-gray-300">
+              Rating Count
+            </h4>
             <div class="">
-              <Bar :data="chartDataGrouped" :options="chartOptions" :style="{ height: isLargeScreen ? '100%' : '350px' }" />
+              <Bar :data="chartDataGrouped" :options="chartOptions"
+                :style="{ height: isLargeScreen ? '100%' : '350px' }" />
             </div>
           </div>
         </div>
@@ -104,7 +107,7 @@
                 {{ hospital.label }}
               </option>
             </select>
-  
+
             <select v-model="selectedRating" @change="fetchReviews"
               class="px-4 py-2 text-sm font-medium leading-5 transition-colors duration-150 border border-1 text-gray-600 border-gray-300 rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700 dark:hover:bg-gray-700 dark:hover:text-white dark:border-none">
               <option value="all">All Rating</option>
@@ -114,7 +117,7 @@
               <option value="4">4 Stars</option>
               <option value="5">5 Stars</option>
             </select>
-  
+
             <select v-model="selectedType" @change="fetchReviews"
               class="px-4 py-2 text-sm font-medium leading-5 transition-colors duration-150 border border-1 text-gray-600 border-gray-300 rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700 dark:hover:bg-gray-700 dark:hover:text-white dark:border-none">
               <option value="all">All Type</option>
@@ -126,92 +129,89 @@
           </div>
 
           <div v-if="reviews.length"
-            class="my-5 overflow-x-auto bg-white shadow-xs dark:bg-gray-800 border bottom-1 border-gray-200 dark:border-none">
-            <table class="table-auto border-collapse border border-gray-400 w-full">
-              <thead>
-                <tr>
-                  <th class="border border-gray-300 dark:text-white p-2">No</th>
-                  <th class="border border-gray-300 dark:text-white p-2">Name</th>
-                  <th class="border border-gray-300 dark:text-white p-2">Review</th>
-                  <th class="border border-gray-300 dark:text-white p-2">Rating</th>
-                  <th class="border border-gray-300 dark:text-white p-2">Type</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="(review, index) in reviews" :key="index">
-                  <td class="border border-gray-300 dark:text-white p-2 text-center">{{ (page - 1) * perPage + index + 1 }}</td>
-                  <td class="border border-gray-300 dark:text-white p-2 ">{{ review.name }}</td>
-                  <td class="border border-gray-300 dark:text-white p-2">{{ review.review }}</td>
-                  <td class="border border-gray-300 dark:text-white p-2 text-center">{{ review.rating }}</td>
-                  <td class="border border-gray-300 dark:text-white p-2 text-center">{{ review.type_rs }}</td>
-                </tr>
-              </tbody>
-            </table>
-            <div
-              class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500  border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800">
-              <span class="flex items-center col-span-3">
-                Showing {{ start }}–{{ end }} of {{ totalPages  }}
+            class="my-5 bg-white shadow-xs dark:bg-gray-800 border bottom-1 border-gray-200 dark:border-none">
+
+            <div class="overflow-x-auto">
+              <table class="table-auto border-collapse border border-gray-400 w-full">
+                <thead>
+                  <tr>
+                    <th class="border border-gray-300 dark:text-white p-2">No</th>
+                    <th class="border border-gray-300 dark:text-white p-2">Name</th>
+                    <th class="border border-gray-300 dark:text-white p-2">Review</th>
+                    <th class="border border-gray-300 dark:text-white p-2">Rating</th>
+                    <th class="border border-gray-300 dark:text-white p-2">Type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(review, index) in reviews" :key="index">
+                    <td class="border border-gray-300 dark:text-white p-2 text-center">
+                      {{ (page - 1) * perPage + index + 1 }}
+                    </td>
+                    <td class="border border-gray-300 dark:text-white p-2">
+                      {{ review.name }}
+                    </td>
+                    <td class="border border-gray-300 dark:text-white p-2">
+                      {{ review.review }}
+                    </td>
+                    <td class="border border-gray-300 dark:text-white p-2 text-center">
+                      {{ review.rating }}
+                    </td>
+                    <td class="border border-gray-300 dark:text-white p-2 text-center">
+                      {{ review.type_rs }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="w-full flex flex-col gap-2 px-4 py-3 text-xs font-semibold tracking-wide 
+           text-gray-500 border-t dark:border-gray-700 bg-gray-50 
+           dark:text-gray-400 dark:bg-gray-800 sm:flex-row sm:items-center sm:justify-between">
+
+              <span class="flex items-center justify-center sm:justify-start">
+                Showing {{ start }}–{{ end }} of {{ totalPages }}
               </span>
-              <span class="col-span-2"></span>
 
-              <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
-                <nav aria-label="Table navigation">
-                  <ul class="inline-flex items-center">
-                    <ul class="inline-flex items-center">
-                      <li>
-                        <button
-                          @click="prevPage"
-                          :disabled="page === 1"
-                          class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple"
-                          aria-label="Previous"
-                        >
-                          <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                            <path
-                              d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                              clip-rule="evenodd"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </button>
-                      </li>                    
+              <nav aria-label="Table navigation" class="flex justify-center sm:justify-end">
+                <ul class="inline-flex items-center space-x-1">
+                  <li>
+                    <button @click="prevPage" :disabled="page === 1"
+                      class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple disabled:opacity-50 disabled:cursor-not-allowed"
+                      aria-label="Previous">
+                      <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                        <path
+                          d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                          clip-rule="evenodd" fill-rule="evenodd" />
+                      </svg>
+                    </button>
+                  </li>
 
-                      <li v-for="num in pageNumbers" :key="num">
-                        <button
-                          v-if="num !== '...'"
-                          @click="goToPage(num)"
-                          :class="[
-                            'px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple',
-                            page === num ? 'bg-purple-600 text-white border border-purple-600' : ''
-                          ]"
-                        >
-                          {{ num }}
-                        </button>
-                        <span v-else class="px-3 py-1">...</span>
-                      </li>                    
+                  <li v-for="num in pageNumbers" :key="num">
+                    <button v-if="num !== '...'" @click="goToPage(num)" :class="[
+                      'px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple',
+                      page === num ? 'bg-blue-500 text-white border border-blue-500' : 'bg-white dark:bg-gray-700'
+                    ]">
+                      {{ num }}
+                    </button>
+                    <span v-else class="px-3 py-1">...</span>
+                  </li>
 
-                      <li>
-                        <button
-                          @click="nextPage"
-                          :disabled="page === totalPages"
-                          class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-purple"
-                          aria-label="Next"
-                        >
-                          <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                            <path
-                              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                              clip-rule="evenodd"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </button>
-                      </li>
-                    </ul>
-                  </ul>
-                </nav>
-              </span>
+                  <li>
+                    <button @click="nextPage" :disabled="page === totalPages"
+                      class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-purple disabled:opacity-50 disabled:cursor-not-allowed"
+                      aria-label="Next">
+                      <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                        <path
+                          d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                          clip-rule="evenodd" fill-rule="evenodd" />
+                      </svg>
+                    </button>
+                  </li>
+                </ul>
+              </nav>
             </div>
           </div>
-          
+
           <p v-else class="text-center mt-5 dark:text-white font-semibold">Data Not Found...</p>
 
         </div>
