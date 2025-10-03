@@ -47,10 +47,11 @@
 
                 <div class="flex-grow">
                     <p class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">Hospitals</p>
-                    <ul class="columns-2 space-y-1">
+                    <ul class="columns-2 lg:columns-4 space-y-2 lg:space-y-3">
                         <li v-for="rs in ['RS-C1', 'RS-C2', 'RS-C3', 'RS-C4', 'RS-C5']" :key="rs"
-                            class="break-inside-avoid text-sm text-gray-700 dark:text-gray-300">
-                            • {{ rs }}
+                            class="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm hover:shadow-md transition-shadow break-inside-avoid">
+                            <span class="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                            {{ rs }}
                         </li>
                     </ul>
                 </div>

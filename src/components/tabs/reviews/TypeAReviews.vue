@@ -42,9 +42,10 @@
 
                 <div class="flex-grow">
                     <p class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">Hospitals</p>
-                    <ul class="columns-1 space-y-1">
-                        <li class="text-sm text-gray-700 dark:text-gray-300 break-inside-avoid">
-                            • RS-A1
+                    <ul class="columns-2 lg:columns-4 space-y-2 lg:space-y-3">
+                        <li class="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm hover:shadow-md transition-shadow break-inside-avoid">
+                            <span class="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                            RS-A1
                         </li>
                     </ul>
                 </div>
