@@ -6,8 +6,7 @@
                     <div>
                         <div>
                             <h1 class="text-lg lg:text-[28px] mb-2">Sentiment and Topic Insights Analysis</h1>
-                            <p class="text-[15px]">Patient Insights Explorer: Dashboard for Sentiment and Topic Analysis
-                                in 24 Hospitals in Yogyakarta</p>
+                            <p class="text-[15px]">Patient Insights Explorer: Dashboard for Sentiment and Topic Analysis of 24 Hospitals in Yogyakarta</p>
                         </div>
                     </div>
                 </div>
