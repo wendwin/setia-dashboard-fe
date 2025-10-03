@@ -59,65 +59,37 @@
 
             <div
                 class="p-4 bg-white rounded-lg dark:bg-gray-800 shadow-md border border-gray-200 dark:border-none h-full flex flex-col">
-                <div class="flex-grow flex flex-col">
-                    <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-                        Summary Insight
-                    </h4>
-                    <fwb-accordion class="flex-grow">
-                        <fwb-accordion-panel class="w-full">
-                            <fwb-accordion-header>Positive Sentiment</fwb-accordion-header>
-                            <fwb-accordion-content>
-                                <p class="mb-2 text-gray-500 dark:text-gray-400">
-                                    {{ summaryPos.content }}
-                                </p>
-                            </fwb-accordion-content>
-                        </fwb-accordion-panel>
-
-                        <fwb-accordion-panel>
-                            <fwb-accordion-header>Negative Sentiment</fwb-accordion-header>
-                            <fwb-accordion-content>
-                                <p class="mb-2 text-gray-500 dark:text-gray-400">
-                                    {{ summaryNeg.content }}
-                                </p>
-                            </fwb-accordion-content>
-                        </fwb-accordion-panel>
-                    </fwb-accordion>
-                    <div class="flex justify-end mt-3">
-                        <ModalEditSummary @updated="fetchTopics" :summaryPos="summaryPos" :summaryNeg="summaryNeg"
-                            :summaryId="summaryPos.id" :typeTopic="typeTopic" />
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="grid gap-6 mb-8 lg:grid-cols-2">
-            <div
-                class="min-w-0 p-4 bg-white rounded-lg dark:bg-gray-800 shadow-md border border-gray-200 dark:border-none">
-                <!-- <h4 class="mb-5 text-center text-lg font-semibold text-gray-800 dark:text-gray-300">
-                    Persentase Sentiment Hospitals Type A
-                </h4> -->
-                <h4 class="mb-6 font-semibold text-gray-800 dark:text-gray-300">
-                    Sentiment Distribution for Type C Hospitals
-                </h4>
-                <div class="md:flex justify-evenly">
-                    <div class="mb-10 lg:mb-0">
-                        <h2 class="text-center font-semibold mb-2 text-gray-800 dark:text-gray-300">Sentiment Real</h2>
-                        <ChartSentimentRealTypeC />
-                    </div>
-                    <div class="mb-4 lg:mb-0">
-                        <h2 class="text-center font-semibold mb-2 text-gray-800 dark:text-gray-300">Sentiment Prediction
-                        </h2>
-                        <ChartSentimentPredictTypeC />
-                    </div>
-                </div>
-            </div>
-            <div
-                class="min-w-0 p-4 bg-white rounded-lg dark:bg-gray-800 shadow-md border border-gray-200 dark:border-none">
                 <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
                     Coherence Score
                 </h4>
                 <CoherenceTypeC />
+            </div>
+        </div>
+
+
+        <div class="w-full bg-white rounded-lg dark:bg-gray-800 shadow-md border border-gray-200 dark:border-none">
+            <h4 class="p-4 text-center font-semibold text-gray-800 dark:text-gray-300">
+                Sentiment Distribution for Type C Hospitals
+            </h4>
+            <div class="grid gap-6 pl-4 pr-4 pb-4 lg:grid-cols-2">
+                <div
+                    class="min-w-0 p-4 bg-white rounded-lg dark:bg-gray-800 border border-gray-200 dark:border-slate-700 hover:shadow-sm hover:bg-slate-50">
+                    <div>
+                        <h2 class="text-center font-semibold mb-2 text-gray-800 dark:text-gray-300">
+                            Sentiment Real
+                        </h2>
+                        <ChartSentimentRealTypeC />
+                    </div>
+                </div>
+                <div
+                    class="min-w-0 p-4 bg-white rounded-lg dark:bg-gray-800 border border-gray-200 dark:border-slate-700 hover:bg-slate-50">
+                    <div>
+                        <h2 class="text-center font-semibold mb-2 text-gray-800 dark:text-gray-300">
+                            Sentiment Prediction
+                        </h2>
+                        <ChartSentimentPredictTypeC />
+                    </div>
+                </div>
             </div>
         </div>
     </div>
